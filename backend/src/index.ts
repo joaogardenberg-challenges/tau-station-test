@@ -4,9 +4,8 @@ import addMiddlewares from './middlewares'
 import addRoutes from './routes'
 
 const app = express()
-
-addMiddlewares(app)
-addRoutes(app)
+const appWS = addMiddlewares(app)
+addRoutes(appWS)
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
