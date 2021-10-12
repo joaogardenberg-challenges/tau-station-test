@@ -5,7 +5,10 @@ import createImage from '../services/images/create'
 import imagesStorage from '../services/images/storage'
 import parseImage from '../services/images/parse'
 
-const { images, getImage, addImage } = imagesStorage()
+const MIN_INTERVAL = 100
+const MAX_INTERVAL = 10000
+
+const { images, getImage, addImage, resetImages } = imagesStorage()
 
 export function index(_: Request, res: Response) {
   res.send(images.map((image) => parseImage(image)))
@@ -23,13 +26,22 @@ export function show(req: Request, res: Response) {
 }
 
 export function webSocket(ws: ws) {
-  const interval = setInterval(() => {
+  resetImages()
+
+  let timeout: NodeJS.Timeout
+
+  const onTimeout = () => {
     const newImage = createImage(images.length + 1)
     const parsedImage = parseImage(newImage)
+
     addImage(newImage)
     ws.send(JSON.stringify(parsedImage))
-  }, random(100, 10000))
 
-  ws.on('close', () => clearInterval(interval))
-  ws.on('error', () => clearInterval(interval))
+    timeout = setTimeout(onTimeout, random(MIN_INTERVAL, MAX_INTERVAL))
+  }
+
+  timeout = setTimeout(onTimeout, random(MIN_INTERVAL, MAX_INTERVAL))
+
+  ws.on('close', () => clearTimeout(timeout))
+  ws.on('error', () => clearTimeout(timeout))
 }

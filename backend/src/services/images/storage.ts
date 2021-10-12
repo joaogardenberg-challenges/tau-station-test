@@ -2,6 +2,8 @@ import range from 'lodash/range'
 import { Image } from '../../interfaces'
 import createImage from './create'
 
+const INITIAL_IMAGE_COUNT = 100
+
 export default function imagesStorage() {
   const images: Image[] = []
 
@@ -11,8 +13,13 @@ export default function imagesStorage() {
     images.push(image)
   }
 
-  // Populate
-  range(100).forEach(() => {
+  const resetImages = () => {
+    if (images.length) {
+      images.length = INITIAL_IMAGE_COUNT
+    }
+  }
+
+  range(INITIAL_IMAGE_COUNT).forEach(() => {
     const newImage = createImage(images.length + 1)
     addImage(newImage)
   })
@@ -20,6 +27,7 @@ export default function imagesStorage() {
   return {
     images,
     getImage,
-    addImage
+    addImage,
+    resetImages
   }
 }
