@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import * as ws from 'ws'
+import random from 'lodash/random'
 import createImage from '../services/images/create'
 import imagesStorage from '../services/images/storage'
 import parseImage from '../services/images/parse'
@@ -27,7 +28,7 @@ export function webSocket(ws: ws) {
     const parsedImage = parseImage(newImage)
     addImage(newImage)
     ws.send(JSON.stringify(parsedImage))
-  }, 1000)
+  }, random(100, 10000))
 
   ws.on('close', () => clearInterval(interval))
   ws.on('error', () => clearInterval(interval))
