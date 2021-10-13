@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-ws": "^5.0.2",
+    "faker": "^5.5.3",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/express-ws": "^3.0.1",
+    "@types/faker": "^5.5.8",
     "@types/lodash": "^4.14.175",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.10.3",
