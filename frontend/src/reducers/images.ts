@@ -33,7 +33,14 @@ export default function imagesReducer(
     case FETCH_IMAGES_SUCCEEDED:
       return update(state, {
         isFetching: { $set: false },
-        list: { $set: mapKeys(payload, 'id') }
+        list: {
+          $set: mapKeys(
+            payload.map((image: ImageState) =>
+              update(INITIAL_IMAGE, { $merge: image })
+            ),
+            'id'
+          )
+        }
       })
     case FETCH_IMAGES_FAILED:
       return update(state, { isFetching: { $set: false } })
