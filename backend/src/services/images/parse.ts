@@ -1,6 +1,6 @@
 import { Image } from '../../types'
 
-const DEFAULT_WIDTH = 200
+export const DEFAULT_WIDTH = 200
 
 export default function parseImage(
   { id, url, heightRatio }: Image,
