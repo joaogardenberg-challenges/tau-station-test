@@ -36,7 +36,9 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.175",
-    "@types/react-router-dom": "^5.3.1"
+    "@types/react-router-dom": "^5.3.1",
+    "jest-websocket-mock": "^2.2.1",
+    "mock-socket": "^9.0.5"
   },
   "eslintConfig": {
     "extends": [
