@@ -1,10 +1,10 @@
 # Live Photo Submissions coding test for JavaScript
 
-Demo: <a href="https://tau-station-test-frontend.herokuapp.com/" target="_blank" rel="noopener noreferrer">https://tau-station-test-frontend.herokuapp.com/</a>
+Demo: https://tau-station-test-frontend.herokuapp.com/
 
 (might take some time to load if the dynos are asleep)
 
-<a href="backend" target="_blank" rel="noopener noreferrer">Backend API documentation</a>
+[Backend API Reference](backend)
 
 ---
 
