@@ -48,9 +48,14 @@ export const watchImages =
         dispatch({ type: FETCH_IMAGE_SUCCEEDED, payload: JSON.parse(data) })
       }
 
-      const onError = () =>
-        isWatchingImages(getState()) &&
-        dispatch({ type: STOPPED_WATCHING_IMAGES })
+      const onError = () => {
+        webSocket.onclose = null
+        webSocket.onerror = null
+
+        if (isWatchingImages(getState())) {
+          dispatch({ type: STOPPED_WATCHING_IMAGES })
+        }
+      }
 
       webSocket.onclose = onError
       webSocket.onerror = onError
