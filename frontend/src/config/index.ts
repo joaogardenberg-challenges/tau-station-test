@@ -1,12 +1,14 @@
-export const NODE_ENV = process.env.NODE_ENV
-export const BASE_BACKEND_URL = process.env.REACT_APP_BASE_BACKEND_URL
+import isNil from 'lodash/isNil'
+import { Config } from 'types'
 
-const config: {
-  [key: string]: string | undefined
-} = { NODE_ENV, BASE_BACKEND_URL }
+export const NODE_ENV = process.env.NODE_ENV
+export const BACKEND_DOMAIN = process.env.REACT_APP_BACKEND_DOMAIN
+export const SECURE = process.env.REACT_APP_SECURE === 'true'
+
+const config: Config = { NODE_ENV, BACKEND_DOMAIN, SECURE }
 
 Object.keys(config).forEach((key: string) => {
-  if (!config[key]) {
+  if (isNil(config[key])) {
     console.warn(
       `[WARNING] There is no REACT_APP_${key} environment variable set!`
     )
