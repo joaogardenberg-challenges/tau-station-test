@@ -13,7 +13,7 @@ describe('Images Storage Service', () => {
     const image = createImage(id)
     const { getImage } = imagesStorage()
 
-    expect(getImage(id)).to.eql(image)
+    expect(getImage(id)?.url).to.eql(image.url)
   })
 
   it('adds an image correctly', () => {
