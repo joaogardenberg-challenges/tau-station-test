@@ -26,7 +26,7 @@ export function show(req: Request, res: Response) {
   res.send(parseImage(image, parseInt(width as string, 10)))
 }
 
-export function webSocket(ws: ws) {
+export function webSocket(socket: ws) {
   let timeout: NodeJS.Timeout
 
   const onTimeout = () => {
@@ -38,13 +38,13 @@ export function webSocket(ws: ws) {
     const parsedImage = parseImage(newImage)
 
     addImage(newImage)
-    ws.send(JSON.stringify(parsedImage))
+    socket.send(JSON.stringify(parsedImage))
 
     timeout = setTimeout(onTimeout, random(MIN_INTERVAL, MAX_INTERVAL))
   }
 
   timeout = setTimeout(onTimeout, random(MIN_INTERVAL, MAX_INTERVAL))
 
-  ws.on('close', () => clearTimeout(timeout))
-  ws.on('error', () => clearTimeout(timeout))
+  socket.on('close', () => clearTimeout(timeout))
+  socket.on('error', () => clearTimeout(timeout))
 }
