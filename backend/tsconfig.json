@@ -14,5 +14,7 @@
     "resolveJsonModule": true,
     "outDir": "build",
     "rootDir": "src"
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
 }
