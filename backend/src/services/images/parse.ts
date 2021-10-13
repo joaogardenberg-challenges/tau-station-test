@@ -1,4 +1,4 @@
-import { Image } from '../../interfaces'
+import { Image } from '../../types'
 
 export const DEFAULT_SIZE = 200
 

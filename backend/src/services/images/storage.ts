@@ -1,5 +1,5 @@
 import range from 'lodash/range'
-import { Image } from '../../interfaces'
+import { Image } from '../../types'
 import createImage from './create'
 
 export const INITIAL_IMAGE_COUNT = 100
