@@ -1,6 +1,11 @@
-import Router from './Router'
+import RouterProvider from './Router'
+import ReduxProvider from './Redux'
 import { ProviderProps } from 'types'
 
 export default function Providers({ children }: ProviderProps) {
-  return <Router>{children}</Router>
+  return (
+    <ReduxProvider>
+      <RouterProvider>{children}</RouterProvider>
+    </ReduxProvider>
+  )
 }
