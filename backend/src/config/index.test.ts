@@ -6,7 +6,9 @@ describe('Config', () => {
     const consoleLog = sinon.stub(console, 'warn')
     const config = await import('.')
     const envCount = Object.keys(config).length - 1
+
     expect(consoleLog.callCount).to.equal(envCount)
+
     consoleLog.restore()
   })
 })
