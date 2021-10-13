@@ -5,5 +5,5 @@ export interface Image {
 }
 
 export interface Config {
-  [key: string]: string | number | boolean | undefined
+  [key: string]: string | undefined
 }
