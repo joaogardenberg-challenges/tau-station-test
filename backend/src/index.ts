@@ -8,5 +8,5 @@ const appWS = addMiddlewares(app)
 addRoutes(appWS)
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`)
+  console.log(`Server is listening on port ${PORT || 4000}`)
 })
