@@ -30,6 +30,7 @@ export default function imagesReducer(
   switch (type) {
     case FETCH_IMAGES:
       return update(state, { isFetching: { $set: true } })
+
     case FETCH_IMAGES_SUCCEEDED:
       return update(state, {
         isFetching: { $set: false },
@@ -42,8 +43,10 @@ export default function imagesReducer(
           )
         }
       })
+
     case FETCH_IMAGES_FAILED:
       return update(state, { isFetching: { $set: false } })
+
     case FETCH_IMAGE:
       return update(state, {
         list: {
@@ -52,18 +55,23 @@ export default function imagesReducer(
           }
         }
       })
+
     case FETCH_IMAGE_SUCCEEDED:
       return update(state, {
         list: {
           [payload.id]: { $set: update(INITIAL_IMAGE, { $merge: payload }) }
         }
       })
+
     case FETCH_IMAGE_FAILED:
       return update(state, { list: { [payload.id]: { $set: INITIAL_IMAGE } } })
+
     case STARTED_WATCHING_IMAGES:
       return update(state, { isWatching: { $set: true } })
+
     case STOPPED_WATCHING_IMAGES:
       return update(state, { isWatching: { $set: false } })
+
     default:
       return state
   }
