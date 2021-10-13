@@ -13,11 +13,11 @@ import {
   STOPPED_WATCHING_IMAGES
 } from 'actions/types'
 
-const INITIAL_IMAGE: ImageState = {
+export const INITIAL_IMAGE: ImageState = {
   isFetching: false
 }
 
-const INITIAL_STATE: ImagesState = {
+export const INITIAL_STATE: ImagesState = {
   isFetching: false,
   isWatching: false,
   list: {}
