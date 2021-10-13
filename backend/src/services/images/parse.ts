@@ -1,11 +1,10 @@
 import { Image } from '../../types'
 
-export const DEFAULT_SIZE = 200
+const DEFAULT_WIDTH = 200
 
 export default function parseImage(
-  image: Image,
-  width: number | string = DEFAULT_SIZE,
-  height: number | string = DEFAULT_SIZE
+  { id, url, heightRatio }: Image,
+  width: number = DEFAULT_WIDTH
 ) {
-  return { ...image, url: `${image.url}/${width}/${height}` }
+  return { id, url: `${url}/${width}/${Math.floor(width * heightRatio)}` }
 }
