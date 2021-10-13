@@ -1,23 +1,24 @@
 import '@testing-library/react'
 
 describe('Config', () => {
-  const OLD_ENV = process.env
+  const oldEnv = process.env
 
   beforeEach(() => {
     jest.resetModules()
-    process.env = { ...OLD_ENV }
+    process.env = { ...oldEnv }
   })
 
   afterEach(() => {
-    process.env = OLD_ENV
+    process.env = oldEnv
   })
 
   it('warns when there are envs missing', async () => {
-    Object.keys(process.env).forEach((key) => (process.env[key] = undefined))
+    process.env.REACT_APP_BACKEND_DOMAIN = undefined
+    process.env.REACT_APP_SECURE = undefined
+    const envCount = 2
 
     const consoleLog = jest.spyOn(global.console, 'warn')
-    const config = await import('.')
-    const envCount = Object.keys(config).length - 1
+    await import('.')
 
     expect(consoleLog).toHaveBeenCalledTimes(envCount)
 
