@@ -7,7 +7,7 @@ const config: {
 
 Object.keys(config).forEach((key: string) => {
   if (!config[key]) {
-    console.log(`[WARNING] There is no ${key} environment variable set!`)
+    console.warn(`[WARNING] There is no ${key} environment variable set!`)
   }
 })
 
