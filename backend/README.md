@@ -65,13 +65,13 @@
             <td>Fetches uploaded images in real time through a web socket.</td>
             <td></td>
             <td>
+                (JSON.stringify)
                 <pre>
 "{
     \"id\": 1,
     \"url\": \"https://picsum.photos/id/1/200/200\"
 }"<!--
              --></pre>
-                (string)
             </td>
         </tr>
     </tbody>
