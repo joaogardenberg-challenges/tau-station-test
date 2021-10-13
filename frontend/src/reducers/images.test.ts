@@ -1,5 +1,4 @@
 import '@testing-library/react'
-import update from 'immutability-helper'
 import mapKeys from 'lodash/mapKeys'
 import { Image } from 'types/image'
 import imagesReducer, { INITIAL_IMAGE, INITIAL_STATE } from './images'
@@ -14,13 +13,17 @@ import {
   STOPPED_WATCHING_IMAGES
 } from 'actions/types'
 
-const mergeInitialImageWith = (image: Image) =>
-  update(INITIAL_IMAGE, { $merge: image })
+const mergeInitialImageWith = (image: Image) => ({ ...INITIAL_IMAGE, ...image })
+
+const irrelevantFields = {
+  url: 'url',
+  meta: { location: 'location', keywords: 'keywords', datetime: new Date() }
+}
 
 describe('Images Reducer', () => {
   describe('FETCH_IMAGES', () => {
     it("activates the list's fetching state", () => {
-      const prevState = update(INITIAL_STATE, { isFetching: { $set: false } })
+      const prevState = { ...INITIAL_STATE, isFetching: false }
       const nextState = imagesReducer(prevState, { type: FETCH_IMAGES })
       expect(nextState.isFetching).toBe(true)
     })
@@ -28,9 +31,9 @@ describe('Images Reducer', () => {
 
   describe('FETCH_IMAGES_SUCCEEDED', () => {
     it('updates the list with the correct structure', () => {
-      const images = [
-        { id: 1, url: 'url1' },
-        { id: 2, url: 'url2' }
+      const images: Image[] = [
+        { id: 1, ...irrelevantFields },
+        { id: 2, ...irrelevantFields }
       ]
 
       const prevState = INITIAL_STATE
@@ -48,18 +51,19 @@ describe('Images Reducer', () => {
 
     it("updates the list correctly when it's not empty", () => {
       const prevImages = [
-        { id: 1, url: 'url1' },
-        { id: 2, url: 'url2' }
+        { id: 1, ...irrelevantFields },
+        { id: 2, ...irrelevantFields }
       ]
 
       const nextImages = [
-        { id: 3, url: 'url3' },
-        { id: 4, url: 'url4' }
+        { id: 3, ...irrelevantFields },
+        { id: 4, ...irrelevantFields }
       ]
 
-      const prevState = update(INITIAL_STATE, {
-        list: { $set: mapKeys(prevImages.map(mergeInitialImageWith), 'id') }
-      })
+      const prevState = {
+        ...INITIAL_STATE,
+        list: mapKeys(prevImages.map(mergeInitialImageWith), 'id')
+      }
 
       const nextState = imagesReducer(prevState, {
         type: FETCH_IMAGES_SUCCEEDED,
@@ -74,7 +78,7 @@ describe('Images Reducer', () => {
 
   describe('FETCH_IMAGES_FAILED', () => {
     it("deactivates the list's fetching state", () => {
-      const prevState = update(INITIAL_STATE, { isFetching: { $set: true } })
+      const prevState = { ...INITIAL_STATE, isFetching: true }
       const nextState = imagesReducer(prevState, { type: FETCH_IMAGES_FAILED })
       expect(nextState.isFetching).toBe(false)
     })
@@ -96,7 +100,7 @@ describe('Images Reducer', () => {
 
   describe('FETCH_IMAGE_SUCCEEDED', () => {
     it('adds the image correctly', () => {
-      const image = { isFetching: false, id: 1, url: 'url1' }
+      const image = { id: 1, ...irrelevantFields }
       const prevState = INITIAL_STATE
 
       const nextState = imagesReducer(prevState, {
@@ -104,16 +108,17 @@ describe('Images Reducer', () => {
         payload: image
       })
 
-      expect(nextState.list[image.id]).toEqual(image)
+      expect(nextState.list[image.id]).toEqual(mergeInitialImageWith(image))
     })
 
     it('updates the image correctly', () => {
-      const prevImage = { id: 1, url: 'url1' }
-      const nextImage = { id: 1, url: 'url2' }
+      const prevImage = { id: 1, ...irrelevantFields }
+      const nextImage = { id: 1, ...irrelevantFields }
 
-      const prevState = update(INITIAL_STATE, {
-        list: { $set: { [prevImage.id]: mergeInitialImageWith(prevImage) } }
-      })
+      const prevState = {
+        ...INITIAL_STATE,
+        list: { [prevImage.id]: mergeInitialImageWith(prevImage) }
+      }
 
       const nextState = imagesReducer(prevState, {
         type: FETCH_IMAGE_SUCCEEDED,
