@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon -r dotenv/config",
     "test": "mocha -r ts-node/register 'src/**/*.test.ts'",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "production": "node build/index.js"
   },
   "dependencies": {
