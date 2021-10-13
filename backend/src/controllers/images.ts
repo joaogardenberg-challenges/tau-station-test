@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import * as ws from 'ws'
 import random from 'lodash/random'
 import createImage from '../services/images/create'
-import imagesStorage from '../services/images/storage'
+import imagesStorage, { INITIAL_IMAGE_COUNT } from '../services/images/storage'
 import parseImage from '../services/images/parse'
 
 const MIN_INTERVAL = 100
@@ -27,11 +27,13 @@ export function show(req: Request, res: Response) {
 }
 
 export function webSocket(ws: ws) {
-  resetImages()
-
   let timeout: NodeJS.Timeout
 
   const onTimeout = () => {
+    if (images.length > INITIAL_IMAGE_COUNT * 3) {
+      resetImages()
+    }
+
     const newImage = createImage(images.length + 1)
     const parsedImage = parseImage(newImage)
 
