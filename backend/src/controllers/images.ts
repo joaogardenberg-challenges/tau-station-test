@@ -15,7 +15,7 @@ export function index(_: Request, res: Response) {
 }
 
 export function show(req: Request, res: Response) {
-  const id = parseInt(req.params.id)
+  const id = parseInt(req.params.id, 10)
   const { width } = req.query
   const image = getImage(id)
 
@@ -23,7 +23,7 @@ export function show(req: Request, res: Response) {
     return res.status(404).send({})
   }
 
-  res.send(parseImage(image, parseInt(width as string)))
+  res.send(parseImage(image, parseInt(width as string, 10)))
 }
 
 export function webSocket(ws: ws) {
