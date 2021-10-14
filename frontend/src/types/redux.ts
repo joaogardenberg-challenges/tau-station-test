@@ -26,10 +26,14 @@ export interface ImageState extends Partial<Image> {
   error?: any
 }
 
+export interface ImagesList {
+  [id: number]: ImageState
+}
+
 export interface ImagesState {
   isFetching: boolean
   isWatching: boolean
-  list: { [key: number]: ImageState }
+  list: ImagesList
   error?: any
 }
 

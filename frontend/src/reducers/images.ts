@@ -26,7 +26,7 @@ export const INITIAL_STATE: ImagesState = {
 export default function imagesReducer(
   state = INITIAL_STATE,
   { type, payload }: AnyAction
-) {
+): ImagesState {
   switch (type) {
     case FETCH_IMAGES:
       return update(state, { isFetching: { $set: true } })
