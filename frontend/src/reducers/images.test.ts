@@ -1,5 +1,4 @@
 import '@testing-library/react'
-import merge from 'deepmerge'
 import mapKeys from 'lodash/mapKeys'
 import { Image } from 'types/image'
 import imagesReducer, { INITIAL_IMAGE, INITIAL_STATE } from './images'
