@@ -3,6 +3,7 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 import Button from '@mui/material/Button'
 import styled from 'styled-components'
 import useQuery from 'hooks/useQuery'
+import { WIDTHS, DEFAULT_WIDTH } from 'config/constants'
 
 const StyledImageSizes = styled.div`
   align-items: center;
@@ -15,9 +16,6 @@ const StyledImageSizes = styled.div`
     margin-right: ${({ theme }) => theme.spacing(1)};
   }
 `
-
-export const WIDTHS = [48, 400, 800, 1280]
-export const DEFAULT_WIDTH = 400
 
 export default function ImageSizes() {
   const history = useHistory()
