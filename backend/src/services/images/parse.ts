@@ -1,6 +1,5 @@
 import { Image, ParsedImage } from '../../types'
-
-export const WIDTHS = [48, 400, 800, 1280]
+import { WIDTHS } from '../../config/constants'
 
 export default function parseImage({
   id,
