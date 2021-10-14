@@ -1,22 +1,18 @@
 import { expect } from 'chai'
 import createImage from './create'
-import parseImage, { DEFAULT_WIDTH } from './parse'
+import parseImage, { WIDTHS } from './parse'
 
 describe('Parse Image Service', () => {
-  it('parses the image with default width', () => {
+  it('parses the image correctly', () => {
     const image = createImage(123)
-    const height = Math.floor(DEFAULT_WIDTH * image.heightRatio)
     const parsedImage = parseImage(image)
 
-    expect(parsedImage.url).to.contain(`${DEFAULT_WIDTH}/${height}`)
-  })
+    expect(Object.keys(parsedImage.urls).length).to.equal(WIDTHS.length)
 
-  it('parses the image with custom width and height', () => {
-    const image = createImage(123)
-    const width = 456
-    const height = Math.floor(width * image.heightRatio)
-    const parsedImage = parseImage(image, width)
-
-    expect(parsedImage.url).to.contain(`${width}/${height}`)
+    Object.entries(parsedImage.urls).forEach(([width, url]) => {
+      const height = Math.floor(parseInt(width, 10) * image.heightRatio)
+      expect(url).to.contain(width)
+      expect(url).to.contain(height)
+    })
   })
 })

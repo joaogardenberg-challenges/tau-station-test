@@ -1,4 +1,5 @@
 import '@testing-library/react'
+import merge from 'deepmerge'
 import mapKeys from 'lodash/mapKeys'
 import { Image } from 'types/image'
 import imagesReducer, { INITIAL_IMAGE, INITIAL_STATE } from './images'
@@ -16,7 +17,7 @@ import {
 const mergeInitialImageWith = (image: Image) => ({ ...INITIAL_IMAGE, ...image })
 
 const irrelevantFields = {
-  url: 'url',
+  urls: { 400: 'url' },
   meta: { location: 'location', keywords: 'keywords', datetime: new Date() }
 }
 
@@ -31,7 +32,7 @@ describe('Images Reducer', () => {
 
   describe('FETCH_IMAGES_SUCCEEDED', () => {
     it('updates the list with the correct structure', () => {
-      const images: Image[] = [
+      const images = [
         { id: 1, ...irrelevantFields },
         { id: 2, ...irrelevantFields }
       ]
@@ -79,10 +80,12 @@ describe('Images Reducer', () => {
   describe('FETCH_IMAGES_FAILED', () => {
     it("deactivates the list's fetching state", () => {
       const prevState = { ...INITIAL_STATE, isFetching: true }
+
       const nextState = imagesReducer(prevState, {
         type: FETCH_IMAGES_FAILED,
         payload: { error: 'error' }
       })
+
       expect(nextState.isFetching).toBe(false)
     })
   })
@@ -115,7 +118,7 @@ describe('Images Reducer', () => {
     })
 
     it('updates the image correctly', () => {
-      const prevImage = { id: 1, ...irrelevantFields }
+      const prevImage = { id: 1, ...irrelevantFields, urls: { 800: 'url' } }
       const nextImage = { id: 1, ...irrelevantFields }
 
       const prevState = {

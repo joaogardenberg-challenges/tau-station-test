@@ -1,3 +1,7 @@
+export interface ImageUrls {
+  [width: number]: string
+}
+
 export interface ImageMeta {
   location: string
   keywords: string
@@ -6,7 +10,7 @@ export interface ImageMeta {
 
 export interface Image {
   id: number
-  url: string
+  urls: ImageUrls
   meta: ImageMeta
 }
 

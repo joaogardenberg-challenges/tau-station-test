@@ -24,7 +24,7 @@ jest.doMock('services/api', () => API)
 const { fetchImages, fetchImage, stopWatchingImages } = require('actions')
 
 const irrelevantFields = {
-  url: 'url',
+  urls: { 48: 'url', 400: 'url', 800: 'url', 1280: 'url' },
   meta: { location: 'location', keywords: '', datetime: new Date().toString() }
 }
 

@@ -16,14 +16,13 @@ export function index(_: Request, res: Response) {
 
 export function show(req: Request, res: Response) {
   const id = parseInt(req.params.id, 10)
-  const { width } = req.query
   const image = getImage(id)
 
   if (!image) {
     return res.status(404).send({})
   }
 
-  res.send(parseImage(image, parseInt(width as string, 10) || undefined))
+  res.send(parseImage(image))
 }
 
 export function webSocket(socket: ws) {

@@ -1,5 +1,4 @@
 import * as API from 'services/api'
-import { ImageParams } from 'types'
 import { isWatchingImages } from 'selectors'
 import {
   FETCH_IMAGES,
@@ -22,16 +21,15 @@ export const fetchImages = () => async (dispatch: Function) => {
   }
 }
 
-export const fetchImage =
-  (id: number, params?: ImageParams) => async (dispatch: Function) => {
-    try {
-      dispatch({ type: FETCH_IMAGE, payload: { id } })
-      const { data: image } = await API.fetchImage(id, params)
-      dispatch({ type: FETCH_IMAGE_SUCCEEDED, payload: image })
-    } catch (error) {
-      dispatch({ type: FETCH_IMAGE_FAILED, payload: { id, error } })
-    }
+export const fetchImage = (id: number) => async (dispatch: Function) => {
+  try {
+    dispatch({ type: FETCH_IMAGE, payload: { id } })
+    const { data: image } = await API.fetchImage(id)
+    dispatch({ type: FETCH_IMAGE_SUCCEEDED, payload: image })
+  } catch (error) {
+    dispatch({ type: FETCH_IMAGE_FAILED, payload: { id, error } })
   }
+}
 
 export const watchImages =
   () => async (dispatch: Function, getState: Function) => {

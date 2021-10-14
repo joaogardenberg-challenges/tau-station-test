@@ -1,14 +1,22 @@
-import { Image } from '../../types'
+import { Image, ParsedImage } from '../../types'
 
-export const DEFAULT_WIDTH = 200
+export const WIDTHS = [48, 400, 800, 1280]
 
-export default function parseImage(
-  { id, url, heightRatio, meta }: Image,
-  width: number = DEFAULT_WIDTH
-) {
+export default function parseImage({
+  id,
+  url,
+  heightRatio,
+  meta
+}: Image): ParsedImage {
   return {
     id,
-    url: `${url}/${width}/${Math.floor(width * heightRatio)}`,
+    urls: WIDTHS.reduce(
+      (acc, width) => ({
+        ...acc,
+        [width]: `${url}/${width}/${Math.floor(width * heightRatio)}`
+      }),
+      {}
+    ),
     meta
   }
 }

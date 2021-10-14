@@ -54,7 +54,7 @@ export default function imagesReducer(
       return update(state, {
         list: {
           [payload.id]: {
-            $set: update(INITIAL_IMAGE, { isFetching: { $set: true } })
+            $set: update(INITIAL_IMAGE, { $merge: { isFetching: true } })
           }
         }
       })
@@ -70,7 +70,7 @@ export default function imagesReducer(
       return update(state, {
         list: {
           [payload.id]: {
-            $set: update(INITIAL_IMAGE, { $merge: { error: payload.error } })
+            $set: update(INITIAL_IMAGE, { $merge: payload })
           }
         }
       })
