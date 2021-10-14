@@ -1,7 +1,8 @@
 import random from 'lodash/random'
 import faker from 'faker'
+import { Image } from '../../types'
 
-export default function createImage(id: number) {
+export default function createImage(id: number): Image {
   return {
     id,
     url: `https://picsum.photos/id/${id}`,

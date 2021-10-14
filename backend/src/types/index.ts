@@ -21,6 +21,13 @@ export interface ParsedImage {
   meta: ImageMeta
 }
 
+export interface ImagesStorage {
+  images: Image[]
+  getImage: Function
+  addImage: Function
+  resetImages: Function
+}
+
 export interface Config {
   [key: string]: string | undefined
 }
