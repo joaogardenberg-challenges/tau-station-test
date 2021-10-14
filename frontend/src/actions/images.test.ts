@@ -23,10 +23,15 @@ jest.doMock('services/api', () => API)
 
 const { fetchImages, fetchImage, stopWatchingImages } = require('actions')
 
+const irrelevantFields = {
+  url: 'url',
+  meta: { location: 'location', keywords: '', datetime: new Date().toString() }
+}
+
 describe('Images Actions', () => {
   describe('fetchImages', () => {
     it('successfully fetches the images', async () => {
-      const images = [{ id: 1, url: 'url1' }]
+      const images = [{ id: 1, ...irrelevantFields }]
 
       API.fetchImages.mockReturnValue(Promise.resolve({ data: images }))
       await fetchImages()(dispatch)
@@ -56,7 +61,7 @@ describe('Images Actions', () => {
   describe('fetchImage', () => {
     it('successfully fetches the image', async () => {
       const id = 1
-      const image = { id, url: `url${id}` }
+      const image = { id, ...irrelevantFields }
 
       API.fetchImage.mockReturnValue(Promise.resolve({ data: image }))
       await fetchImage(id)(dispatch)
@@ -121,7 +126,7 @@ describe('Images Actions', () => {
     })
 
     it('dispatches correctly on image received', async () => {
-      const image = { id: 1, url: 'url1' }
+      const image = { id: 1, ...irrelevantFields }
       require('actions').watchImages()(dispatch, getState)
 
       await mockServer.connected
