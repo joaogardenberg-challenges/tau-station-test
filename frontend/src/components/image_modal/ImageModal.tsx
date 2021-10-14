@@ -19,7 +19,7 @@ export default function ImageModal() {
   const params: { id: string } = useParams()
   const query = useQuery()
   const imagesList = useSelector(getImagesList)
-  const id: number = parseInt(params.id, 10)
+  const id = parseInt(params.id, 10)
   const hasPrev = Boolean(imagesList[id - 1])
   const hasNext = Boolean(imagesList[id + 1])
 

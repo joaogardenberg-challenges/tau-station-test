@@ -47,13 +47,12 @@ const StyledImage = styled.a`
 export default function Image() {
   const history = useHistory()
   const params: { id: string } = useParams()
-  const id: number = parseInt(params.id, 10)
+  const id = parseInt(params.id, 10)
   const { image, imagesCount } = useSelector((s: StoreState) => ({
     image: getImage(s, id),
     imagesCount: Object.keys(getImagesList(s)).length
   }))
-  const [loading, setLoading] = useState(false)
-  const width: number = parseInt(useQuery().get('width') || '', 10)
+  const width = parseInt(useQuery().get('width') || '', 10)
   const { urls, meta } = image || {}
   const src = urls?.[width]
 

@@ -23,7 +23,7 @@ export default function ImageSizes() {
   const history = useHistory()
   const { pathname } = useLocation()
   const query = useQuery()
-  const queryWidth: number = parseInt(query.get('width') || '', 10)
+  const queryWidth = parseInt(query.get('width') || '', 10)
   const width = queryWidth || DEFAULT_WIDTH
 
   if (!WIDTHS.includes(queryWidth)) {
