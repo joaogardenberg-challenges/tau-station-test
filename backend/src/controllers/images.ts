@@ -23,7 +23,7 @@ export function show(req: Request, res: Response) {
     return res.status(404).send({})
   }
 
-  res.send(parseImage(image, parseInt(width as string, 10)))
+  res.send(parseImage(image, parseInt(width as string, 10) || undefined))
 }
 
 export function webSocket(socket: ws) {
