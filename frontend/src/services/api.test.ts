@@ -49,9 +49,7 @@ describe('API Service', () => {
       const id = 3
       require('./api').fetchImage(id)
 
-      expect(axiosGet).toHaveBeenCalledWith(`http://backend/images/${id}`, {
-        params: undefined
-      })
+      expect(axiosGet).toHaveBeenCalledWith(`http://backend/images/${id}`)
     })
 
     it('sends the right params', () => {
@@ -60,11 +58,9 @@ describe('API Service', () => {
 
       const id = 3
       const params = { width: 100 }
-      require('./api').fetchImage(id, params)
+      require('./api').fetchImage(id)
 
-      expect(axiosGet).toHaveBeenCalledWith(`http://backend/images/${id}`, {
-        params
-      })
+      expect(axiosGet).toHaveBeenCalledWith(`http://backend/images/${id}`)
     })
   })
 
