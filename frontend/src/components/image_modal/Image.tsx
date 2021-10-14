@@ -52,6 +52,7 @@ export default function Image() {
     image: getImage(s, id),
     imagesCount: Object.keys(getImagesList(s)).length
   }))
+  const [loading, setLoading] = useState<boolean>(false)
   const width = parseInt(useQuery().get('width') || '', 10)
   const { urls, meta } = image || {}
   const src = urls?.[width]
