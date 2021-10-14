@@ -45,7 +45,10 @@ export default function imagesReducer(
       })
 
     case FETCH_IMAGES_FAILED:
-      return update(state, { isFetching: { $set: false } })
+      return update(state, {
+        isFetching: { $set: false },
+        error: { $set: payload.error }
+      })
 
     case FETCH_IMAGE:
       return update(state, {
@@ -64,7 +67,13 @@ export default function imagesReducer(
       })
 
     case FETCH_IMAGE_FAILED:
-      return update(state, { list: { [payload.id]: { $set: INITIAL_IMAGE } } })
+      return update(state, {
+        list: {
+          [payload.id]: {
+            $set: update(INITIAL_IMAGE, { $merge: { error: payload.error } })
+          }
+        }
+      })
 
     case STARTED_WATCHING_IMAGES:
       return update(state, { isWatching: { $set: true } })

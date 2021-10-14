@@ -79,7 +79,10 @@ describe('Images Reducer', () => {
   describe('FETCH_IMAGES_FAILED', () => {
     it("deactivates the list's fetching state", () => {
       const prevState = { ...INITIAL_STATE, isFetching: true }
-      const nextState = imagesReducer(prevState, { type: FETCH_IMAGES_FAILED })
+      const nextState = imagesReducer(prevState, {
+        type: FETCH_IMAGES_FAILED,
+        payload: { error: 'error' }
+      })
       expect(nextState.isFetching).toBe(false)
     })
   })

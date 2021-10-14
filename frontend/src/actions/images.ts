@@ -17,8 +17,8 @@ export const fetchImages = () => async (dispatch: Function) => {
     dispatch({ type: FETCH_IMAGES })
     const { data: images } = await API.fetchImages()
     dispatch({ type: FETCH_IMAGES_SUCCEEDED, payload: images })
-  } catch {
-    dispatch({ type: FETCH_IMAGES_FAILED })
+  } catch (error) {
+    dispatch({ type: FETCH_IMAGES_FAILED, payload: { error } })
   }
 }
 
@@ -28,8 +28,8 @@ export const fetchImage =
       dispatch({ type: FETCH_IMAGE, payload: { id } })
       const { data: image } = await API.fetchImage(id, params)
       dispatch({ type: FETCH_IMAGE_SUCCEEDED, payload: image })
-    } catch {
-      dispatch({ type: FETCH_IMAGE_FAILED, payload: { id } })
+    } catch (error) {
+      dispatch({ type: FETCH_IMAGE_FAILED, payload: { id, error } })
     }
   }
 

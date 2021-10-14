@@ -23,12 +23,14 @@ export interface ReducersState {
 
 export interface ImageState extends Partial<Image> {
   isFetching: boolean
+  error?: any
 }
 
 export interface ImagesState {
   isFetching: boolean
   isWatching: boolean
   list: { [key: number]: ImageState }
+  error?: any
 }
 
 export interface WatcherState {

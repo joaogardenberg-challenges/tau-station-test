@@ -40,12 +40,16 @@ describe('Images Actions', () => {
     })
 
     it('gracefully handles error', async () => {
-      API.fetchImages.mockReturnValue(Promise.reject())
+      const error = 'error'
+      API.fetchImages.mockReturnValue(Promise.reject(error))
       await fetchImages()(dispatch)
 
       expect(dispatch).toHaveBeenCalledTimes(2)
       expect(dispatch).toHaveBeenNthCalledWith(1, { type: FETCH_IMAGES })
-      expect(dispatch).toHaveBeenNthCalledWith(2, { type: FETCH_IMAGES_FAILED })
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: FETCH_IMAGES_FAILED,
+        payload: { error }
+      })
     })
   })
 
