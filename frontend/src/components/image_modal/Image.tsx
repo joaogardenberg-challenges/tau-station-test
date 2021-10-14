@@ -48,12 +48,14 @@ export default function Image() {
   const history = useHistory()
   const params: { id: string } = useParams()
   const id = parseInt(params.id, 10)
+  const [loading, setLoading] = useState<boolean>(false)
+  const width = parseInt(useQuery().get('width') || '', 10)
+
   const { image, imagesCount } = useSelector((s: StoreState) => ({
     image: getImage(s, id),
     imagesCount: Object.keys(getImagesList(s)).length
   }))
-  const [loading, setLoading] = useState<boolean>(false)
-  const width = parseInt(useQuery().get('width') || '', 10)
+
   const { urls, meta } = image || {}
   const src = urls?.[width]
 
