@@ -29,15 +29,23 @@ describe('API Service', () => {
     it('uses the right insecure url', () => {
       process.env.REACT_APP_BACKEND_DOMAIN = 'backend'
       process.env.REACT_APP_SECURE = 'false'
-      require('./api').fetchImages()
-      expect(axiosGet).toHaveBeenCalledWith('http://backend/images')
+
+      const params = { fromId: 0, limit: 10 }
+      require('./api').fetchImages(params)
+
+      expect(axiosGet).toHaveBeenCalledWith('http://backend/images', { params })
     })
 
     it('uses the right secure url', () => {
       process.env.REACT_APP_BACKEND_DOMAIN = 'backend'
       process.env.REACT_APP_SECURE = 'true'
-      require('./api').fetchImages()
-      expect(axiosGet).toHaveBeenCalledWith('https://backend/images')
+
+      const params = { fromId: 0, limit: 10 }
+      require('./api').fetchImages(params)
+
+      expect(axiosGet).toHaveBeenCalledWith('https://backend/images', {
+        params
+      })
     })
   })
 
@@ -57,7 +65,6 @@ describe('API Service', () => {
       process.env.REACT_APP_SECURE = 'false'
 
       const id = 3
-      const params = { width: 100 }
       require('./api').fetchImage(id)
 
       expect(axiosGet).toHaveBeenCalledWith(`http://backend/images/${id}`)
