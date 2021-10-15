@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import classNames from 'classnames'
 import styled from 'styled-components'
-import { getImage, getImagesList } from 'selectors'
+import { getImage } from 'selectors'
 import useQuery from 'hooks/useQuery'
 import { StoreState } from 'types'
 import { useEffect } from 'react'
@@ -45,23 +45,13 @@ const StyledImage = styled.a`
 `
 
 export default function Image() {
-  const history = useHistory()
   const params: { id: string } = useParams()
   const id = parseInt(params.id, 10)
   const [loading, setLoading] = useState<boolean>(false)
   const width = parseInt(useQuery().get('width') || '', 10)
-
-  const { image, imagesCount } = useSelector((s: StoreState) => ({
-    image: getImage(s, id),
-    imagesCount: Object.keys(getImagesList(s)).length
-  }))
-
+  const image = useSelector((s: StoreState) => getImage(s, id))
   const { urls, meta } = image || {}
   const src = urls?.[width]
-
-  if (imagesCount && !image) {
-    history.replace('/images')
-  }
 
   useEffect(() => {
     setLoading(true)
