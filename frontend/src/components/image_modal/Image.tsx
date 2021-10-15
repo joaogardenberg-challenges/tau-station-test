@@ -10,6 +10,9 @@ import useQuery from 'hooks/useQuery'
 import { StoreState } from 'types'
 import { useEffect } from 'react'
 
+const CHEVRON_WIDTH = 64
+const SIZES_HEIGHT = 36
+
 const StyledImage = styled.a`
   display: flex;
   height: auto;
@@ -25,8 +28,12 @@ const StyledImage = styled.a`
     }
   }
   & > img {
-    max-height: calc(100vh - 72px - ${({ theme }) => theme.spacing(8)});
-    max-width: calc(100vw - 128px - ${({ theme }) => theme.spacing(8)});
+    max-height: calc(
+      100vh - ${SIZES_HEIGHT * 2}px - ${({ theme }) => theme.spacing(8)}
+    );
+    max-width: calc(
+      100vw - ${CHEVRON_WIDTH * 2}px - ${({ theme }) => theme.spacing(8)}
+    );
   }
   & > .overlay {
     align-items: center;
