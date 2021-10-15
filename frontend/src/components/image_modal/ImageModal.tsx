@@ -13,7 +13,8 @@ import {
 } from './ImageModal.styled'
 import Image from './Image'
 import ImageSizes from './ImageSizes'
-import ImagesPreloader from 'components/ImagesPreloader'
+import ImagesPreloader from './ImagesPreloader'
+import ImagesFetcher from './ImagesFetcher'
 
 export default function ImageModal() {
   const history = useHistory()
@@ -65,6 +66,7 @@ export default function ImageModal() {
       </StyledFloatingIconButton>
       <ImageSizes />
       <ImagesPreloader />
+      <ImagesFetcher />
     </StyledImageModal>,
     document.getElementById('modal-portal') as HTMLElement
   )
