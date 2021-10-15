@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 import createImage from './create'
-import parseImage, { WIDTHS } from './parse'
+import parseImage from './parse'
+import { WIDTHS } from '../../config/constants'
 
 describe('Parse Image Service', () => {
   it('parses the image correctly', () => {
