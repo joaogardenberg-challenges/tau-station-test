@@ -1,4 +1,5 @@
 import IconButton from '@mui/material/IconButton'
+import CircularProgress from '@mui/material/CircularProgress'
 import styled from 'styled-components'
 
 export const StyledImageModal = styled.aside`
@@ -57,4 +58,8 @@ export const StyledFloatingIconButton = styled(StyledIconButton)`
   & > .MuiSvgIcon-root {
     font-size: 2.1rem;
   }
+`
+
+export const StyledCircularProgress = styled(CircularProgress)`
+  position: absolute;
 `

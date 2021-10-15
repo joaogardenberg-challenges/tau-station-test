@@ -7,12 +7,14 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import CloseIcon from '@mui/icons-material/Close'
 import { ThemeContext } from 'styled-components'
-import { getImagesList } from 'selectors'
+import { getImagesList, isFetchingImages } from 'selectors'
 import useQuery from 'hooks/useQuery'
+import { StoreState } from 'types'
 import {
   StyledImageModal,
   StyledIconButton,
-  StyledFloatingIconButton
+  StyledFloatingIconButton,
+  StyledCircularProgress
 } from './ImageModal.styled'
 import Image from './Image'
 import ImageSizes from './ImageSizes'
@@ -22,10 +24,19 @@ import ImagesFetcher from './ImagesFetcher'
 export default function ImageModal() {
   const history = useHistory()
   const params: { id: string } = useParams()
-  const query = useQuery()
-  const imagesList = useSelector(getImagesList)
-  const theme = useContext(ThemeContext)
   const id = parseInt(params.id, 10)
+  const query = useQuery()
+  const theme = useContext(ThemeContext)
+
+  const { imagesList, isFetching } = useSelector((s: StoreState) => {
+    const imagesList = getImagesList(s)
+
+    return {
+      imagesList,
+      isFetching: isFetchingImages(s) && Boolean(Object.keys(imagesList).length)
+    }
+  })
+
   const hasPrev = Boolean(imagesList[id - 1])
   const hasNext = Boolean(imagesList[id + 1])
 
@@ -56,6 +67,9 @@ export default function ImageModal() {
             onClick={onNextClick}
           >
             <ChevronLeftIcon />
+            {!hasNext && isFetching && (
+              <StyledCircularProgress color="inherit" size={40} thickness={4} />
+            )}
           </StyledIconButton>
           <StyledIconButton
             aria-label="previous"
@@ -64,6 +78,9 @@ export default function ImageModal() {
             onClick={onPrevClick}
           >
             <ChevronRightIcon />
+            {!hasPrev && isFetching && (
+              <StyledCircularProgress color="inherit" size={40} thickness={4} />
+            )}
           </StyledIconButton>
         </div>
         <StyledFloatingIconButton
