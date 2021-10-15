@@ -17,6 +17,17 @@ export const StyledImageModal = styled.aside`
     display: flex;
     justify-content: space-between;
     width: 100vw;
+    & > * {
+      order: 1;
+    }
+    & > button {
+      &:first-of-type {
+        order: 0;
+      }
+      &:last-of-type {
+        order: 2;
+      }
+    }
   }
 `
 

@@ -38,6 +38,7 @@ export default function ImageModal() {
   return createPortal(
     <StyledImageModal>
       <div className="carousel">
+          <Image />
         <StyledIconButton
           aria-label="next"
           color="secondary"
@@ -46,7 +47,6 @@ export default function ImageModal() {
         >
           <ChevronLeftIcon />
         </StyledIconButton>
-        <Image />
         <StyledIconButton
           aria-label="previous"
           color="secondary"
