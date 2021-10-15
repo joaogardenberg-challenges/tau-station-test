@@ -52,9 +52,8 @@ export function webSocket(socket: ws) {
     }
 
     const newImage = createImage(images.length + 1)
-    const parsedImage = parseImage(newImage)
-
     addImage(newImage)
+    const parsedImage = parseImage(newImage)
     socket.send(JSON.stringify(parsedImage))
 
     timeout = setTimeout(onTimeout, random(MIN_INTERVAL, MAX_INTERVAL))
