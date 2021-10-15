@@ -10,7 +10,7 @@ import { Image } from '../types'
 const MIN_INTERVAL = 100
 const MAX_INTERVAL = 10000
 const DEFAULT_LIMIT = 10
-const MAX_LIMIT = 100
+const MAX_LIMIT = 1000
 
 const { images, getImage, addImage, resetImages } = imagesStorage()
 
