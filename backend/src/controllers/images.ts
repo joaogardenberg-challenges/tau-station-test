@@ -4,19 +4,37 @@ import random from 'lodash/random'
 import createImage from '../services/images/create'
 import imagesStorage, { INITIAL_IMAGE_COUNT } from '../services/images/storage'
 import parseImage from '../services/images/parse'
+import { sortIdDesc } from '../services/images/sort'
+import { Image } from '../types'
 
 const MIN_INTERVAL = 100
 const MAX_INTERVAL = 10000
+const DEFAULT_LIMIT = 10
+const MAX_LIMIT = 100
 
 const { images, getImage, addImage, resetImages } = imagesStorage()
 
-export function index(_: Request, res: Response) {
-  res.send(images.map((image) => parseImage(image)))
+export function index(req: Request, res: Response) {
+  const { fromId, limit } = req.query as { fromId: string; limit: string }
+  const parsedId = parseInt(fromId || '0', 10)
+
+  const parsedLimit = Math.min(
+    parseInt(limit || '0', 10) || DEFAULT_LIMIT,
+    MAX_LIMIT
+  )
+
+  const sortedImages = images.sort(sortIdDesc)
+
+  const idIndex = parsedId
+    ? images.findIndex(({ id }: Image) => id === parsedId)
+    : 0
+
+  res.send(sortedImages.slice(idIndex, idIndex + parsedLimit).map(parseImage))
 }
 
 export function show(req: Request, res: Response) {
-  const id = parseInt(req.params.id, 10)
-  const image = getImage(id)
+  const { id } = req.params as { id: string }
+  const image = getImage(parseInt(id, 10))
 
   if (!image) {
     return res.status(404).send({})
@@ -29,7 +47,7 @@ export function webSocket(socket: ws) {
   let timeout: NodeJS.Timeout
 
   const onTimeout = () => {
-    if (images.length > INITIAL_IMAGE_COUNT * 3) {
+    if (images.length > INITIAL_IMAGE_COUNT * 100) {
       resetImages()
     }
 
