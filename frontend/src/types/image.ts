@@ -14,6 +14,7 @@ export interface Image {
   meta: ImageMeta
 }
 
-export interface ImageParams {
-  width: number
+export interface ImagesParams {
+  fromId?: number
+  limit?: number
 }
