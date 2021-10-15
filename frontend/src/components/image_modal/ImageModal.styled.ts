@@ -12,6 +12,15 @@ export const StyledImageModal = styled.aside`
   position: absolute;
   top: 0;
   width: 100vw;
+  &.transition-appear {
+    opacity: 0;
+    transform: scale(1.2);
+    &.transition-appear-active {
+      opacity: 1;
+      transform: none;
+      transition: all ${({ theme }) => theme.transitions.duration.standard}ms;
+    }
+  }
   & > .carousel {
     align-items: center;
     display: flex;
