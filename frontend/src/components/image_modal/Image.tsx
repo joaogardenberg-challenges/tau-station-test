@@ -26,7 +26,7 @@ export default function Image() {
   useEffect(() => {
     setLoading(true)
     setErrored(false)
-  }, [image])
+  }, [image?.id, src])
 
   if (!image) {
     return null
