@@ -22,7 +22,12 @@ export default function ImagesFetcher() {
   const firstImageId = Math.max(...imagesIds)
 
   useEffect(() => {
-    if (id && lastImageId && Object.keys(images).length && id <= lastImageId) {
+    if (
+      id > 1 &&
+      lastImageId &&
+      Object.keys(images).length &&
+      id <= lastImageId
+    ) {
       dispatch(
         fetchImages({ fromId: lastImageId - 1, limit: lastImageId - id })
       )
