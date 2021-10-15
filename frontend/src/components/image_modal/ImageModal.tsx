@@ -39,19 +39,19 @@ export default function ImageModal() {
     <StyledImageModal>
       <div className="carousel">
         <StyledIconButton
-          aria-label="previous"
+          aria-label="next"
           color="secondary"
-          disabled={!hasPrev}
-          onClick={onPrevClick}
+          disabled={!hasNext}
+          onClick={onNextClick}
         >
           <ChevronLeftIcon />
         </StyledIconButton>
         <Image />
         <StyledIconButton
-          aria-label="next"
+          aria-label="previous"
           color="secondary"
-          disabled={!hasNext}
-          onClick={onNextClick}
+          disabled={!hasPrev}
+          onClick={onPrevClick}
         >
           <ChevronRightIcon />
         </StyledIconButton>
