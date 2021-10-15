@@ -47,7 +47,7 @@ export function webSocket(socket: ws) {
   let timeout: NodeJS.Timeout
 
   const onTimeout = () => {
-    if (images.length > INITIAL_IMAGE_COUNT * 100) {
+    if (images.length > MAX_LIMIT) {
       resetImages()
     }
 
