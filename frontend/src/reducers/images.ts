@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import update from 'immutability-helper'
+import merge from 'deepmerge'
 import mapKeys from 'lodash/mapKeys'
 import { ImageState, ImagesState } from 'types'
 import {
@@ -35,11 +36,14 @@ export default function imagesReducer(
       return update(state, {
         isFetching: { $set: false },
         list: {
-          $set: mapKeys(
-            payload.map((image: ImageState) =>
-              update(INITIAL_IMAGE, { $merge: image })
-            ),
-            'id'
+          $set: merge(
+            state.list,
+            mapKeys(
+              payload.map((image: ImageState) =>
+                update(INITIAL_IMAGE, { $merge: image })
+              ),
+              'id'
+            )
           )
         }
       })

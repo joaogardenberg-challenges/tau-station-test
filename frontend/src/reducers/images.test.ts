@@ -71,7 +71,7 @@ describe('Images Reducer', () => {
       })
 
       expect(nextState.list).toEqual(
-        mapKeys(nextImages.map(mergeInitialImageWith), 'id')
+        mapKeys([...prevImages, ...nextImages].map(mergeInitialImageWith), 'id')
       )
     })
   })
