@@ -7,14 +7,14 @@ export const INITIAL_IMAGE_COUNT = 100
 const INITIAL_IMAGES = range(INITIAL_IMAGE_COUNT).map((i) => createImage(i + 1))
 
 export default function imagesStorage(): ImagesStorage {
-  let images: Image[] = [...INITIAL_IMAGES]
+  const images: Image[] = [...INITIAL_IMAGES]
 
   const getImage = (id: number): Image | undefined =>
     images.find((image) => image.id === id)
 
   const addImage = (image: Image) => images.push(image)
 
-  const resetImages = () => (images = [...INITIAL_IMAGES])
+  const resetImages = () => images.splice(0, images.length, ...INITIAL_IMAGES)
 
   return {
     images,
