@@ -1,16 +1,22 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { fetchImages } from 'actions'
+import { fetchImages, watchImages } from 'actions'
 
 const StyledImagesList = styled.div``
 
 export default function ImagesList() {
   const dispatch = useDispatch()
+  const [fromId, setFromId] = useState<number>(0)
 
   useEffect(() => {
-    dispatch(fetchImages())
+    setFromId(0)
+    dispatch(watchImages())
   }, [])
+
+  useEffect(() => {
+    dispatch(fetchImages({ fromId }))
+  }, [fromId])
 
   return <StyledImagesList />
 }
