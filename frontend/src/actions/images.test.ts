@@ -44,6 +44,29 @@ describe('Images Actions', () => {
       })
     })
 
+    it('sends params correctly', async () => {
+      const images = [{ id: 1, ...irrelevantFields }]
+      API.fetchImages.mockReturnValue(Promise.resolve({ data: images }))
+
+      const params = [
+        undefined,
+        { fromId: 1 },
+        { limit: 1 },
+        { fromId: 1, limit: 1 }
+      ]
+
+      await fetchImages(params[0])(dispatch)
+      await fetchImages(params[1])(dispatch)
+      await fetchImages(params[2])(dispatch)
+      await fetchImages(params[3])(dispatch)
+
+      expect(API.fetchImages).toHaveBeenCalledTimes(4)
+      expect(API.fetchImages).toHaveBeenNthCalledWith(1, params[0])
+      expect(API.fetchImages).toHaveBeenNthCalledWith(2, params[1])
+      expect(API.fetchImages).toHaveBeenNthCalledWith(3, params[2])
+      expect(API.fetchImages).toHaveBeenNthCalledWith(4, params[3])
+    })
+
     it('gracefully handles error', async () => {
       const error = 'error'
       API.fetchImages.mockReturnValue(Promise.reject(error))
