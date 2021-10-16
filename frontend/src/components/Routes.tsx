@@ -1,5 +1,5 @@
 import { useHistory, Route } from 'react-router-dom'
-import ImagesList from './ImagesList'
+import ImagesList from './images_list/ImagesList'
 import ImageModal from './image_modal/ImageModal'
 
 export default function Routes() {
