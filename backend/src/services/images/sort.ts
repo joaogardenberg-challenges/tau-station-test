@@ -1,4 +1,7 @@
 import { Image } from '../../types'
 
-export const sortIdDesc = ({ id: firstId }: Image, { id: secondId }: Image) =>
-  secondId - firstId
+export default function sortImages(images: Image[]) {
+  return images.sort(
+    ({ id: firstId }: Image, { id: secondId }: Image) => secondId - firstId
+  )
+}

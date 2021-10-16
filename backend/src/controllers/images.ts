@@ -4,7 +4,7 @@ import random from 'lodash/random'
 import createImage from '../services/images/create'
 import imagesStorage, { INITIAL_IMAGE_COUNT } from '../services/images/storage'
 import parseImage from '../services/images/parse'
-import { sortIdDesc } from '../services/images/sort'
+import sortImages from '../services/images/sort'
 import { Image } from '../types'
 
 const MIN_INTERVAL = 100
@@ -23,7 +23,7 @@ export function index(req: Request, res: Response) {
     MAX_LIMIT
   )
 
-  const sortedImages = images.sort(sortIdDesc)
+  const sortedImages = sortImages(images)
 
   const idIndex = parsedId
     ? images.findIndex(({ id }: Image) => id === parsedId)
