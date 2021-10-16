@@ -13,15 +13,14 @@ describe('Config', () => {
   })
 
   it('warns when there are envs missing', async () => {
-    process.env.REACT_APP_BACKEND_DOMAIN = undefined
-    process.env.REACT_APP_SECURE = undefined
-    const envCount = 2
+    const envs = ['REACT_APP_BACKEND_DOMAIN', 'REACT_APP_SECURE']
+    envs.forEach((env) => (process.env[env] = undefined))
 
-    const consoleLog = jest.spyOn(global.console, 'warn')
+    const consoleWarn = jest.spyOn(global.console, 'warn')
     await import('.')
 
-    expect(consoleLog).toHaveBeenCalledTimes(envCount)
+    expect(consoleWarn).toHaveBeenCalledTimes(envs.length)
 
-    consoleLog.mockRestore()
+    consoleWarn.mockRestore()
   })
 })
