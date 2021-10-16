@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux'
 import { WatcherState } from 'types'
 
-const INITIAL_STATE: WatcherState = { watching: true }
+export const INITIAL_STATE: WatcherState = { watching: true }
 
 export default function watcherReducer(
   state = INITIAL_STATE,
