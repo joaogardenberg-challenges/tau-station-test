@@ -4,7 +4,7 @@ import createImage from './create'
 
 export const INITIAL_IMAGE_COUNT = 100
 
-const INITIAL_IMAGES = range(INITIAL_IMAGE_COUNT).map((i) => createImage(i + 1))
+const INITIAL_IMAGES = range(1, INITIAL_IMAGE_COUNT + 1).map(createImage)
 
 export default function imagesStorage(): ImagesStorage {
   const images: Image[] = [...INITIAL_IMAGES]
