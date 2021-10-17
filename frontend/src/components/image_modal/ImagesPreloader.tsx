@@ -6,7 +6,7 @@ import { getImagesList } from 'selectors'
 import useQuery from 'hooks/useQuery'
 import { ImagesList } from 'types'
 
-const IDS_RANGE = 10
+export const IDS_RANGE = 10
 
 export default function ImagesPreloader() {
   const params: { id: string } = useParams()
