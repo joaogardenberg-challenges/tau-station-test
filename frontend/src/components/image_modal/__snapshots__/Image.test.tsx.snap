@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image renders successfully 1`] = `
+<div>
+  <div
+    class="sc-bdfBQB lfCfsQ"
+  >
+    <a
+      class="sc-gsTEea hfGhzp"
+      href="http://url400.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <img
+        alt="keywords"
+        class="loading"
+        data-testid="image"
+        src="http://url400.com"
+      />
+      <span
+        class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorSecondary css-y3raj0-MuiCircularProgress-root"
+        role="progressbar"
+        style="width: 45px; height: 45px;"
+      >
+        <svg
+          class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="19.5"
+            stroke-width="5"
+          />
+        </svg>
+      </span>
+    </a>
+  </div>
+</div>
+`;

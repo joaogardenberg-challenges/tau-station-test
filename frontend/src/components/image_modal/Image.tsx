@@ -46,6 +46,7 @@ export default function Image() {
             alt={meta?.keywords}
             onLoad={() => setLoading(false)}
             onError={() => setErrored(true)}
+            data-testid="image"
           />
           {errored ? (
             <ImageNotSupportedIcon className="error" color="secondary" />
