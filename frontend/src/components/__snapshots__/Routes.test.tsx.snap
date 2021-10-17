@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Routes renders image modal successfully 1`] = `
+<div>
+  <div
+    data-testid="image-modal"
+  />
+  <div
+    data-testid="images-list"
+  />
+</div>
+`;
+
+exports[`Routes renders images list successfully 1`] = `
+<div>
+  <div
+    data-testid="images-list"
+  />
+</div>
+`;
