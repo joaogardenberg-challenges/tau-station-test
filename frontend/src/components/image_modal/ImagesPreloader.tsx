@@ -25,7 +25,7 @@ export default function ImagesPreloader() {
   useEffect(() => {
     Object.values(images[id]?.urls || []).forEach(preloadImage)
 
-    range(id - IDS_RANGE, id + IDS_RANGE).forEach((imageId) => {
+    range(id - IDS_RANGE, id + IDS_RANGE + 1).forEach((imageId) => {
       const image = images[imageId]
 
       if (image?.urls) {
