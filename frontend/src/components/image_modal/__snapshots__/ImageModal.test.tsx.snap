@@ -9,7 +9,7 @@ exports[`Image Modal renders successfully 1`] = `
       class="carousel"
     >
       <div
-        class="image"
+        data-testid="image"
       />
       <button
         aria-label="next"
@@ -76,13 +76,13 @@ exports[`Image Modal renders successfully 1`] = `
       />
     </button>
     <div
-      class="image-sizes"
+      data-testid="image-sizes"
     />
     <div
-      class="images-preloader"
+      data-testid="images-preloader"
     />
     <div
-      class="images-fetcher"
+      data-testid="images-fetcher"
     />
   </aside>
 </div>

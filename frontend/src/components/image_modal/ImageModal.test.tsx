@@ -56,6 +56,16 @@ describe('Image Modal', () => {
 
   it('renders successfully', () => {
     const { container } = renderWithTheme(<ImageModal />)
+
+    const image = screen.getByTestId('image')
+    const imageSizes = screen.getByTestId('image-sizes')
+    const imagesPreloader = screen.getByTestId('images-preloader')
+    const imagesFetcher = screen.getByTestId('images-fetcher')
+
+    expect(image).toBeInTheDocument()
+    expect(imageSizes).toBeInTheDocument()
+    expect(imagesPreloader).toBeInTheDocument()
+    expect(imagesFetcher).toBeInTheDocument()
     expect(container).toMatchSnapshot()
   })
 
