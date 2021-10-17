@@ -1,7 +1,7 @@
-import { fetchImages } from 'actions'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import { fetchImages } from 'actions'
 import { getImagesList } from 'selectors'
 import { ImagesList } from 'types'
 import useQuery from 'hooks/useQuery'
