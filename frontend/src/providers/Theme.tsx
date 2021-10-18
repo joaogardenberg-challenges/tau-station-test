@@ -1,12 +1,16 @@
+import { ReactNode } from 'react'
 import { ThemeProvider } from 'styled-components'
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider
 } from '@mui/material/styles'
 import { NODE_ENV } from 'config'
-import { ProviderProps } from 'types'
 
-export default function Theme({ children }: ProviderProps) {
+interface ThemeProviderProps {
+  children: ReactNode
+}
+
+export default function Theme({ children }: ThemeProviderProps) {
   const theme = createTheme({
     palette: {
       background: { default: '#fff' },
