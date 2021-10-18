@@ -21,7 +21,7 @@ const imagesList = {
 const images = update(INITIAL_STATE, { list: { $set: imagesList } })
 const state = { images }
 
-describe('Imagers Selectors', () => {
+describe('Images Selectors', () => {
   describe('getImages', () => {
     it('returns the whole state', () => {
       expect(getImages(state)).toEqual(images)
@@ -89,11 +89,11 @@ describe('Imagers Selectors', () => {
 
   describe('isFetchingImage', () => {
     it('returns true', () => {
-      expect(isFetchingImage(state, 1)).toEqual(false)
+      expect(isFetchingImage(state, 2)).toEqual(true)
     })
 
     it('returns false on right id', () => {
-      expect(isFetchingImage(state, 2)).toEqual(true)
+      expect(isFetchingImage(state, 1)).toEqual(false)
     })
 
     it('returns false on wrong id', () => {
