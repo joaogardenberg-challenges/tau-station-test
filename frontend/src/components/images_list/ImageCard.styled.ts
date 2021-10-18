@@ -52,7 +52,7 @@ export default styled.li<StyledImageCardProps>`
       }
     }
     & > .overlay {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.4);
       display: flex;
       flex-flow: row wrap;
       height: 100%;
