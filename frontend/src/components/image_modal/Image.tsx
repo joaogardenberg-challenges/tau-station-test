@@ -8,7 +8,7 @@ import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported'
 import classNames from 'classnames'
 import { ThemeContext } from 'styled-components'
 import { getImage } from 'selectors'
-import { selectImage } from 'actions'
+import { selectImage, deselectImage } from 'actions'
 import useQuery from 'hooks/useQuery'
 import { StoreState } from 'types'
 import { StyledTransitionGroup, StyledImage } from './Image.styled'
@@ -24,6 +24,13 @@ export default function Image() {
   const [errored, setErrored] = useState<boolean>(false)
   const { urls, meta } = image || {}
   const src = urls?.[width]
+
+  useEffect(
+    () => () => {
+      dispatch(deselectImage())
+    },
+    []
+  )
 
   useEffect(() => {
     setLoading(true)
