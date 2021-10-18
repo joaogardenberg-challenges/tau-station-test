@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Images List renders successfully 1`] = `
+<div>
+  <div
+    class="sc-bdfBQB ecKllZ"
+  >
+    <ul
+      class="images-list"
+    >
+      <div
+        data-testid="image-filler"
+      />
+      <div
+        data-testid="image-filler"
+      />
+      <div
+        data-testid="image-card"
+      />
+      <div
+        data-testid="image-card"
+      />
+      <div
+        data-testid="image-card"
+      />
+    </ul>
+    <div
+      data-testid="images-fetcher"
+    />
+  </div>
+</div>
+`;
