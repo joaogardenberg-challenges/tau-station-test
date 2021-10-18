@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image Filler renders successfully 1`] = `
+<div>
+  <li
+    class="sc-bdfBQB gcgrmU"
+  />
+</div>
+`;
