@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image Filler renders successfully 1`] = `
+<div>
+  <li
+    class="sc-bdfBQB bgnNMx transition-appear transition-appear-active"
+  >
+    <div
+      class="content"
+    >
+      <img
+        alt="keywords"
+        class="loading"
+        src="url"
+      />
+      <span
+        class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-lepzwj-MuiCircularProgress-root"
+        role="progressbar"
+        style="width: 35px; height: 35px;"
+      >
+        <svg
+          class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="20"
+            stroke-width="4"
+          />
+        </svg>
+      </span>
+      <div
+        class="overlay"
+      >
+        <a
+          class="MuiButton-root MuiButton-text MuiButton-textSecondary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-11zs9w5-MuiButtonBase-root-MuiButton-root"
+          href="/images/1?width=48"
+          tabindex="0"
+        >
+          48
+          px
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </a>
+        <a
+          class="MuiButton-root MuiButton-text MuiButton-textSecondary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-11zs9w5-MuiButtonBase-root-MuiButton-root"
+          href="/images/1?width=400"
+          tabindex="0"
+        >
+          400
+          px
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </a>
+        <a
+          class="MuiButton-root MuiButton-text MuiButton-textSecondary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-11zs9w5-MuiButtonBase-root-MuiButton-root"
+          href="/images/1?width=800"
+          tabindex="0"
+        >
+          800
+          px
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </a>
+        <a
+          class="MuiButton-root MuiButton-text MuiButton-textSecondary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-11zs9w5-MuiButtonBase-root-MuiButton-root"
+          href="/images/1?width=1280"
+          tabindex="0"
+        >
+          1280
+          px
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </a>
+      </div>
+    </div>
+  </li>
+</div>
+`;
