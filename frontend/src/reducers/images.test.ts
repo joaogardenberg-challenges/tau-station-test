@@ -10,7 +10,9 @@ import {
   FETCH_IMAGE_SUCCEEDED,
   FETCH_IMAGE_FAILED,
   STARTED_WATCHING_IMAGES,
-  STOPPED_WATCHING_IMAGES
+  STOPPED_WATCHING_IMAGES,
+  SELECT_IMAGE,
+  DESELECT_IMAGE
 } from 'actions/types'
 
 const mergeInitialImageWith = (image: Image) => ({ ...INITIAL_IMAGE, ...image })
@@ -171,6 +173,28 @@ describe('Images Reducer', () => {
       })
 
       expect(nextState.isWatching).toBe(false)
+    })
+  })
+
+  describe('SELECT_IMAGE', () => {
+    it('selects the image', () => {
+      const id = 1
+      const prevState = INITIAL_STATE
+
+      const nextState = imagesReducer(prevState, {
+        type: SELECT_IMAGE,
+        payload: id
+      })
+
+      expect(nextState.selectedImage).toBe(id)
+    })
+  })
+
+  describe('DESELECT_IMAGE', () => {
+    it('deselects the image', () => {
+      const prevState = INITIAL_STATE
+      const nextState = imagesReducer(prevState, { type: DESELECT_IMAGE })
+      expect(nextState.selectedImage).toBe(undefined)
     })
   })
 

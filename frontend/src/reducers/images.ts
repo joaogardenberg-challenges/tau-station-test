@@ -11,7 +11,9 @@ import {
   FETCH_IMAGE_SUCCEEDED,
   FETCH_IMAGE_FAILED,
   STARTED_WATCHING_IMAGES,
-  STOPPED_WATCHING_IMAGES
+  STOPPED_WATCHING_IMAGES,
+  SELECT_IMAGE,
+  DESELECT_IMAGE
 } from 'actions/types'
 
 export const INITIAL_IMAGE: ImageState = {
@@ -84,6 +86,12 @@ export default function imagesReducer(
 
     case STOPPED_WATCHING_IMAGES:
       return update(state, { isWatching: { $set: false } })
+
+    case SELECT_IMAGE:
+      return update(state, { selectedImage: { $set: payload } })
+
+    case DESELECT_IMAGE:
+      return update(state, { selectedImage: { $set: undefined } })
 
     default:
       return state

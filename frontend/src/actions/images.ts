@@ -10,7 +10,9 @@ import {
   FETCH_IMAGE_SUCCEEDED,
   FETCH_IMAGE_FAILED,
   STARTED_WATCHING_IMAGES,
-  STOPPED_WATCHING_IMAGES
+  STOPPED_WATCHING_IMAGES,
+  SELECT_IMAGE,
+  DESELECT_IMAGE
 } from './types'
 
 export const fetchImages =
@@ -68,3 +70,7 @@ export const watchImages =
   }
 
 export const stopWatchingImages = () => ({ type: STOPPED_WATCHING_IMAGES })
+
+export const selectImage = (id: number) => ({ type: SELECT_IMAGE, payload: id })
+
+export const deselectImage = () => ({ type: DESELECT_IMAGE })

@@ -26,3 +26,6 @@ export const getImage = (state: StoreState, id: number): ImageState =>
 
 export const isFetchingImage = (state: StoreState, id: number): boolean =>
   Boolean(state.images.list[id]?.isFetching)
+
+export const getSelectedImage = (state: StoreState): number | undefined =>
+  state.images.selectedImage

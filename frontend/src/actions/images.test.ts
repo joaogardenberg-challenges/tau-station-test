@@ -8,7 +8,9 @@ import {
   FETCH_IMAGE_SUCCEEDED,
   FETCH_IMAGE_FAILED,
   STARTED_WATCHING_IMAGES,
-  STOPPED_WATCHING_IMAGES
+  STOPPED_WATCHING_IMAGES,
+  SELECT_IMAGE,
+  DESELECT_IMAGE
 } from './types'
 
 const API = {
@@ -21,7 +23,13 @@ const dispatch = jest.fn()
 
 jest.doMock('services/api', () => API)
 
-const { fetchImages, fetchImage, stopWatchingImages } = require('actions')
+const {
+  fetchImages,
+  fetchImage,
+  stopWatchingImages,
+  selectImage,
+  deselectImage
+} = require('actions')
 
 const irrelevantFields = {
   urls: { 48: 'url', 400: 'url', 800: 'url', 1280: 'url' },
@@ -209,6 +217,19 @@ describe('Images Actions', () => {
       expect(stopWatchingImages()).toEqual({
         type: STOPPED_WATCHING_IMAGES
       })
+    })
+  })
+
+  describe('selectImage', () => {
+    it('dispatches the right action', () => {
+      const id = 1
+      expect(selectImage(id)).toEqual({ type: SELECT_IMAGE, payload: id })
+    })
+  })
+
+  describe('deselectImage', () => {
+    it('dispatches the right action', () => {
+      expect(deselectImage()).toEqual({ type: DESELECT_IMAGE })
     })
   })
 })

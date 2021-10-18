@@ -34,6 +34,7 @@ export interface ImagesState {
   isFetching: boolean
   isWatching: boolean
   list: ImagesList
+  selectedImage?: number
   error?: any
 }
 

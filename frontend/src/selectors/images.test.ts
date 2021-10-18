@@ -9,12 +9,13 @@ import {
   getImagesList,
   getImage,
   getLastSortedImageId,
-  getSortedImageIds
+  getSortedImageIds,
+  getSelectedImage
 } from 'selectors/images'
 
 const imagesList = {
-  1: INITIAL_IMAGE,
-  2: { isFetching: true }
+  1: update(INITIAL_IMAGE, { $merge: { id: 1 } }),
+  2: { id: 2, isFetching: true }
 }
 
 const images = update(INITIAL_STATE, { list: { $set: imagesList } })
@@ -97,6 +98,22 @@ describe('Imagers Selectors', () => {
 
     it('returns false on wrong id', () => {
       expect(isFetchingImage(state, 10)).toEqual(false)
+    })
+  })
+
+  describe('getSelectedImage', () => {
+    it('returns the selected image id', () => {
+      const id = 1
+
+      const newState = update(state, {
+        images: { selectedImage: { $set: id } }
+      })
+
+      expect(getSelectedImage(newState)).toEqual(id)
+    })
+
+    it('returns undefined when no image is selected', () => {
+      expect(getSelectedImage(state)).toEqual(undefined)
     })
   })
 })
