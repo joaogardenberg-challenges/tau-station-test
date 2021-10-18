@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import ThemeProvider from 'providers/Theme'
 
 const ImageFiller = require('./ImageFiller').default
