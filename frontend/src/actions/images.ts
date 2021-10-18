@@ -1,3 +1,4 @@
+import noop from 'lodash/noop'
 import * as API from 'services/api'
 import { ImagesParams } from 'types'
 import { isWatchingImages } from 'selectors'
@@ -13,11 +14,13 @@ import {
 } from './types'
 
 export const fetchImages =
-  (params?: ImagesParams) => async (dispatch: Function) => {
+  (params?: ImagesParams, onSuccess = noop) =>
+  async (dispatch: Function) => {
     try {
       dispatch({ type: FETCH_IMAGES })
       const { data: images } = await API.fetchImages(params)
       dispatch({ type: FETCH_IMAGES_SUCCEEDED, payload: images })
+      onSuccess(images)
     } catch (error) {
       dispatch({ type: FETCH_IMAGES_FAILED, payload: { error } })
     }
