@@ -7,7 +7,9 @@ import {
   isFetchingImage,
   isWatchingImages,
   getImagesList,
-  getImage
+  getImage,
+  getLastSortedImageId,
+  getSortedImageIds
 } from 'selectors/images'
 
 const imagesList = {
@@ -58,6 +60,18 @@ describe('Imagers Selectors', () => {
   describe('getImagesList', () => {
     it('returns the whole images list', () => {
       expect(getImagesList(state)).toEqual(imagesList)
+    })
+  })
+
+  describe('getSortedImageIds', () => {
+    it("returns the images list's ids sorted backwards", () => {
+      expect(getSortedImageIds(state)).toEqual([2, 1])
+    })
+  })
+
+  describe('getLastSortedImageId', () => {
+    it("return the last image's id", () => {
+      expect(getLastSortedImageId(state)).toEqual(1)
     })
   })
 
