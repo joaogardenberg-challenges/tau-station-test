@@ -57,23 +57,25 @@ export default function ImageCard({
         ref={ref as any}
         isVisible={isVisible}
       >
-        <div className="content">
-          <img
-            className={classNames({ loading, errored })}
-            src={src}
-            alt={meta?.keywords}
-            onLoad={() => setLoading(false)}
-            onError={() => setErrored(true)}
-          />
-          {errored ? (
-            <ImageNotSupportedIcon className="error" color="primary" />
-          ) : (
-            loading && (
-              <CircularProgress color="primary" size={35} thickness={4} />
-            )
-          )}
-          <div className="overlay">{WIDTHS.map(renderLink)}</div>
-        </div>
+        {isVisible && (
+          <div className="content">
+            <img
+              className={classNames({ loading, errored })}
+              src={src}
+              alt={meta?.keywords}
+              onLoad={() => setLoading(false)}
+              onError={() => setErrored(true)}
+            />
+            {errored ? (
+              <ImageNotSupportedIcon className="error" color="primary" />
+            ) : (
+              loading && (
+                <CircularProgress color="primary" size={35} thickness={4} />
+              )
+            )}
+            <div className="overlay">{WIDTHS.map(renderLink)}</div>
+          </div>
+        )}
       </StyledImageCard>
     </CSSTransition>
   )

@@ -7,9 +7,17 @@ interface StyledImageCardProps {
 }
 
 export default styled.li<StyledImageCardProps>`
+  height: calc(
+    (100vh - ${({ theme, perColumn }) => theme.spacing(perColumn * 2 + 2)}) /
+      ${({ perColumn }) => perColumn}
+  );
   list-style: none;
   margin: ${({ theme }) => theme.spacing(1)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+  width: calc(
+    (100vw - ${({ theme, perRow }) => theme.spacing(perRow * 2 + 2)}) /
+      ${({ perRow }) => perRow}
+  );
   &.transition-appear,
   &.transition-enter {
     & > .content {
@@ -29,17 +37,11 @@ export default styled.li<StyledImageCardProps>`
     background-color: #eee;
     border-radius: ${({ theme }) => theme.shape.borderRadius}px;
     display: flex;
-    height: calc(
-      (100vh - ${({ theme, perColumn }) => theme.spacing(perColumn * 2 + 2)}) /
-        ${({ perColumn }) => perColumn}
-    );
+    height: 100%;
     justify-content: center;
     overflow: hidden;
     position: relative;
-    width: calc(
-      (100vw - ${({ theme, perRow }) => theme.spacing(perRow * 2 + 2)}) /
-        ${({ perRow }) => perRow}
-    );
+    width: 100%;
     &:hover > .overlay {
       opacity: 1;
     }
