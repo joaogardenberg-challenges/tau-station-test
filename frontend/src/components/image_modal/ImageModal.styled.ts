@@ -10,7 +10,7 @@ export const StyledImageModal = styled.aside`
   justify-content: center;
   left: 0;
   padding: ${({ theme }) => theme.spacing(2)};
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100vw;
   &.transition-appear {
