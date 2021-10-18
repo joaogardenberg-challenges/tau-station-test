@@ -52,11 +52,8 @@ export default function ImagesList() {
     ((perRow - (imageIds.length % perRow)) % perRow) - missingEnd
 
   useEffect(() => {
-    dispatch(watchImages())
-  }, [])
-
-  useEffect(() => {
     dispatch(fetchImages({ limit: perRow * 10 }))
+    dispatch(watchImages())
   }, [])
 
   const renderFiller = (i: number) => (
