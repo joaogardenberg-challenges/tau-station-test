@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from 'react'
+import { useRef, useContext, useState, useEffect, ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported'
 import classNames from 'classnames'
 import { ThemeContext } from 'styled-components'
-import { getImage } from 'selectors'
+import { getImage, getSelectedImage } from 'selectors'
 import { StoreState } from 'types'
 import { WIDTHS } from 'config/constants'
 import useOnScreen from 'hooks/useOnScreen'
@@ -25,13 +25,24 @@ export default function ImageCard({
   perColumn
 }: ImageCardProps) {
   const theme = useContext(ThemeContext)
-  const image = useSelector((s: StoreState) => getImage(s, imageId))
-  const ref = useRef()
+  const ref = useRef<HTMLElement>()
   const isVisible = useOnScreen(ref)
   const [loading, setLoading] = useState<boolean>(true)
   const [errored, setErrored] = useState<boolean>(false)
+
+  const { image, selectedImage } = useSelector((s: StoreState) => ({
+    image: getImage(s, imageId),
+    selectedImage: getSelectedImage(s)
+  }))
+
   const { urls, meta } = image
   const src = urls?.[400]
+
+  useEffect(() => {
+    if (selectedImage === imageId) {
+      ref.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [selectedImage === imageId])
 
   const renderLink = (width: number) => (
     <Button
