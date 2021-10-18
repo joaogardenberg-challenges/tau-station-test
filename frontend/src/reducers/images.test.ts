@@ -17,12 +17,12 @@ import {
 
 const mergeInitialImageWith = (image: Image) => ({ ...INITIAL_IMAGE, ...image })
 
-const irrelevantFields = {
-  urls: { 400: 'url' },
-  meta: { location: 'location', keywords: 'keywords', datetime: new Date() }
-}
-
 describe('Images Reducer', () => {
+  const irrelevantFields = {
+    urls: { 400: 'url' },
+    meta: { location: 'location', keywords: 'keywords', datetime: new Date() }
+  }
+
   describe('FETCH_IMAGES', () => {
     it("activates the list's fetching state", () => {
       const prevState = { ...INITIAL_STATE, isFetching: false }

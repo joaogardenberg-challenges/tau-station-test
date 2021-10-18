@@ -13,15 +13,15 @@ import {
   getSelectedImage
 } from 'selectors/images'
 
-const imagesList = {
-  1: update(INITIAL_IMAGE, { $merge: { id: 1 } }),
-  2: { id: 2, isFetching: true }
-}
-
-const images = update(INITIAL_STATE, { list: { $set: imagesList } })
-const state = { images }
-
 describe('Images Selectors', () => {
+  const imagesList = {
+    1: update(INITIAL_IMAGE, { $merge: { id: 1 } }),
+    2: { id: 2, isFetching: true }
+  }
+
+  const images = update(INITIAL_STATE, { list: { $set: imagesList } })
+  const state = { images }
+
   describe('getImages', () => {
     it('returns the whole state', () => {
       expect(getImages(state)).toEqual(images)

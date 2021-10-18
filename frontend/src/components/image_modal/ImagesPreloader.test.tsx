@@ -14,20 +14,20 @@ jest.doMock('hooks/useQuery', () => useQuery)
 
 const { default: ImagesPreloader, IDS_RANGE } = require('./ImagesPreloader')
 
-const images = mapKeys(
-  range(1, 41).map((id) => ({
-    id,
-    urls: {
-      48: `${id}-48`,
-      400: `${id}-400`,
-      800: `${id}-800`,
-      1280: `${id}-1280`
-    }
-  })),
-  'id'
-)
-
 describe('Images Preloader', () => {
+  const images = mapKeys(
+    range(1, 41).map((id) => ({
+      id,
+      urls: {
+        48: `${id}-48`,
+        400: `${id}-400`,
+        800: `${id}-800`,
+        1280: `${id}-1280`
+      }
+    })),
+    'id'
+  )
+
   beforeEach(() => {
     useState.mockReturnValue([[], jest.fn()])
     useSelector.mockReturnValue(images)

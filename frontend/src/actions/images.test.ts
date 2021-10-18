@@ -31,12 +31,16 @@ const {
   deselectImage
 } = require('actions')
 
-const irrelevantFields = {
-  urls: { 48: 'url', 400: 'url', 800: 'url', 1280: 'url' },
-  meta: { location: 'location', keywords: '', datetime: new Date().toString() }
-}
-
 describe('Images Actions', () => {
+  const irrelevantFields = {
+    urls: { 48: 'url', 400: 'url', 800: 'url', 1280: 'url' },
+    meta: {
+      location: 'location',
+      keywords: '',
+      datetime: new Date().toString()
+    }
+  }
+
   describe('fetchImages', () => {
     it('successfully fetches the images', async () => {
       const images = [{ id: 1, ...irrelevantFields }]

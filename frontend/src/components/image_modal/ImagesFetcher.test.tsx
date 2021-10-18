@@ -21,13 +21,13 @@ jest.doMock('actions', () => ({ fetchImages }))
 
 const ImagesFetcher = require('./ImagesFetcher').default
 
-const images = mapKeys(
-  range(10, 21).map((id) => ({ id })),
-  'id'
-)
-
 describe('Images Fetcher', () => {
   const queryToString = 'query'
+
+  const images = mapKeys(
+    range(10, 21).map((id) => ({ id })),
+    'id'
+  )
 
   beforeEach(() => {
     useHistory.mockReturnValue({ replace: jest.fn() })
