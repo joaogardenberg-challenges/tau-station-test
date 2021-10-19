@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useOnScreen always not visible because it never intersects anything in jsdom 1`] = `
+<div>
+  <div>
+    not visible
+  </div>
+</div>
+`;
