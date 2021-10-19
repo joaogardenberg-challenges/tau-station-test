@@ -1,4 +1,38 @@
-# Backend API Reference
+# Backend
+
+## Install the dependencies
+
+Run at the `backend` folder:
+
+```
+$ npm install
+```
+
+## Start the development server
+
+Run at the `backend` folder:
+
+```
+$ npm start
+```
+
+## Test
+
+Run at the `backend` folder:
+
+```
+$ npm test
+```
+
+## Build for production
+
+Run at the `backend` folder:
+
+```
+$ npm run build
+```
+
+# API Reference
 
 ## Images
 
