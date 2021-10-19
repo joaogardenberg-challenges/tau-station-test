@@ -24,15 +24,13 @@ const ImagesFetcher = require('./ImagesFetcher').default
 describe('Images Fetcher', () => {
   const queryToString = 'query'
 
-  const images = mapKeys(
-    range(10, 21).map((id) => ({ id })),
-    'id'
-  )
+  const state = { imageIds: range(10, 21).reverse(), isFetching: false }
 
   beforeEach(() => {
     useHistory.mockReturnValue({ replace: jest.fn() })
+    useParams.mockReturnValue({ id: 5 })
     useDispatch.mockReturnValue(jest.fn())
-    useSelector.mockReturnValue(images)
+    useSelector.mockReturnValue(state)
     useQuery.mockReturnValue({
       get: () => '400',
       set: jest.fn(),
@@ -41,7 +39,6 @@ describe('Images Fetcher', () => {
   })
 
   it('fetches the images until it reaches the current id', () => {
-    useParams.mockReturnValue({ id: 5 })
     render(<ImagesFetcher />)
 
     expect(fetchImages).toHaveBeenCalledTimes(1)
