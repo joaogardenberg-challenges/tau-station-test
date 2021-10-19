@@ -30,7 +30,17 @@
 [
     {
         "id": 1,
-        "url": "https://picsum.photos/id/1/200/200"
+        "urls": {
+            "48": "https://picsum.photos/id/1/48/48",
+            "400": "https://picsum.photos/id/1/400/400",
+            "800": "https://picsum.photos/id/1/800/800",
+            "1280": "https://picsum.photos/id/1/1280/1280"
+        },
+        "meta": {
+            "location": "Amsterdam",
+            "keywords": "cupiditate earum quia",
+            "datetime": "2020-11-19"
+        }
     },
     (...)
 ]<!--
@@ -52,7 +62,17 @@
                 <pre>
 {
     "id": 1,
-    "url": "https://picsum.photos/id/1/200/200"
+    "urls": {
+        "48": "https://picsum.photos/id/1/48/48",
+        "400": "https://picsum.photos/id/1/400/400",
+        "800": "https://picsum.photos/id/1/800/800",
+        "1280": "https://picsum.photos/id/1/1280/1280"
+    },
+    "meta": {
+        "location": "Amsterdam",
+        "keywords": "cupiditate earum quia",
+        "datetime": "2020-11-19"
+    }
 }<!--
              --></pre>
             </td>
@@ -69,7 +89,17 @@
                 <pre>
 "{
     \"id\": 1,
-    \"url\": \"https://picsum.photos/id/1/200/200\"
+    \"urls\": {
+        \"48\": \"https://picsum.photos/id/1/48/48\",
+        \"400\": \"https://picsum.photos/id/1/400/400\",
+        \"800\": \"https://picsum.photos/id/1/800/800\",
+        \"1280\": \"https://picsum.photos/id/1/1280/1280\"
+    },
+    \"meta\": {
+        \"location\": \"Amsterdam\",
+        \"keywords\": \"cupiditate earum quia\",
+        \"datetime\": \"2020-11-19\"
+    }
 }"<!--
              --></pre>
             </td>
