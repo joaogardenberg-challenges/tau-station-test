@@ -9,11 +9,18 @@ export default styled.div`
     margin: 0;
     padding: ${({ theme }) => theme.spacing(1)};
   }
-  & > .loading {
+  & > .loading,
+  & > .error {
     align-items: center;
     display: flex;
     height: 100vh;
     justify-content: center;
     width: 100vw;
+  }
+  & > .error {
+    flex-direction: column;
+    & > :not(:first-child) {
+      margin-top: ${({ theme }) => theme.spacing(1)};
+    }
   }
 `

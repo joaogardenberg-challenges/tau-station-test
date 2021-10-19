@@ -4,8 +4,10 @@ import range from 'lodash/range'
 import isEmpty from 'lodash/isEmpty'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CircularProgress from '@mui/material/CircularProgress'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 import { ThemeContext } from 'styled-components'
-import { fetchImages, watchImages } from 'actions'
+import { fetchImages, watchImages, stopWatchingImages } from 'actions'
 import { StoreState } from 'types'
 import { getSortedImageIds, isFetchingImages } from 'selectors'
 import StyledImagesList from './ImagesList.styled'
@@ -34,9 +36,14 @@ export default function ImagesList() {
   const missingStart =
     ((perRow - (imageIds.length % perRow)) % perRow) - missingEnd
 
-  useEffect(() => {
+  const fetch = () => {
+    dispatch(stopWatchingImages())
     dispatch(fetchImages({ limit: perRow * 10 }))
     dispatch(watchImages())
+  }
+
+  useEffect(() => {
+    fetch()
   }, [])
 
   const renderFiller = (i: number) => (
@@ -53,6 +60,13 @@ export default function ImagesList() {
       {isEmpty(imageIds) && isFetching ? (
         <div className="loading">
           <CircularProgress color="primary" size={45} thickness={5} />
+        </div>
+      ) : isEmpty(imageIds) ? (
+        <div className="error">
+          <Typography>Failed to fetch images</Typography>
+          <Button variant="contained" onClick={fetch}>
+            Retry
+          </Button>
         </div>
       ) : (
         <>
