@@ -4,31 +4,14 @@ import range from 'lodash/range'
 import isEmpty from 'lodash/isEmpty'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CircularProgress from '@mui/material/CircularProgress'
-import styled, { ThemeContext } from 'styled-components'
+import { ThemeContext } from 'styled-components'
 import { fetchImages, watchImages } from 'actions'
+import { StoreState } from 'types'
 import { getSortedImageIds, isFetchingImages } from 'selectors'
+import StyledImagesList from './ImagesList.styled'
 import ImageFiller from './ImageFiller'
 import ImageCard from './ImageCard'
 import ImagesFetcher from './ImagesFetcher'
-import { StoreState } from 'types'
-
-const StyledImagesList = styled.div`
-  & > .images-list {
-    align-items: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    margin: 0;
-    padding: ${({ theme }) => theme.spacing(1)};
-  }
-  & > .loading {
-    align-items: center;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    width: 100vw;
-  }
-`
 
 const PER_COLUMN = 3
 
