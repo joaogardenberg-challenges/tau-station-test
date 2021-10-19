@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import ThemeProvider from 'providers/Theme'
 
 const useDispatch = jest.fn()
@@ -6,10 +7,11 @@ const useSelector = jest.fn()
 const useMediaQuery = jest.fn()
 const fetchImages = jest.fn()
 const watchImages = jest.fn()
+const stopWatchingImages = jest.fn()
 
 jest.doMock('react-redux', () => ({ useDispatch, useSelector }))
 jest.doMock('@mui/material/useMediaQuery', () => useMediaQuery)
-jest.doMock('actions', () => ({ fetchImages, watchImages }))
+jest.doMock('actions', () => ({ fetchImages, watchImages, stopWatchingImages }))
 
 jest.mock('./ImageFiller')
 jest.mock('./ImageCard')
@@ -66,6 +68,7 @@ describe('Images List', () => {
   it('fetches and watches the images', () => {
     renderWithTheme(<ImagesList />)
 
+    expect(stopWatchingImages).toHaveBeenCalledTimes(1)
     expect(fetchImages).toHaveBeenCalledTimes(1)
     expect(watchImages).toHaveBeenCalledTimes(1)
   })
