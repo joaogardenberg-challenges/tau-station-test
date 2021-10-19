@@ -16,14 +16,6 @@ export default function Theme({ children }: ThemeProviderProps) {
       background: { default: '#fff' },
       primary: { main: '#000' },
       secondary: { main: '#fff' }
-    },
-    transitions: {
-      duration: {
-        // standard: 3000,
-        // enteringScreen: 3000,
-        // leavingScreen: 3000,
-        // complex: 3000
-      }
     }
   })
 
