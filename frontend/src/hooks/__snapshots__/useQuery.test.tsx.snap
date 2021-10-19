@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useQuery functions properly in a component 1`] = `
+<div>
+  <p>
+    400
+  </p>
+  <p>
+    width=400
+  </p>
+</div>
+`;
