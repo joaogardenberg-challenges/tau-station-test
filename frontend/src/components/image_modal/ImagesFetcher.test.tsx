@@ -27,7 +27,7 @@ describe('Images Fetcher', () => {
   const state = { imageIds: range(10, 21).reverse(), isFetching: false }
 
   beforeEach(() => {
-    useHistory.mockReturnValue({ replace: jest.fn() })
+    useHistory.mockReturnValue({ replace: jest.fn(), push: jest.fn() })
     useParams.mockReturnValue({ id: 5 })
     useDispatch.mockReturnValue(jest.fn())
     useSelector.mockReturnValue(state)
@@ -62,5 +62,19 @@ describe('Images Fetcher', () => {
       pathname: '/images/20',
       search: queryToString
     })
+  })
+
+  it('closes the modal when the images fail to be fetched', () => {
+    const { rerender } = render(<ImagesFetcher />)
+
+    expect(useHistory().push).not.toHaveBeenCalled()
+
+    const newState = { ...state, imageIds: [] }
+    useSelector.mockReturnValue(newState)
+
+    rerender(<ImagesFetcher />)
+
+    expect(useHistory().push).toHaveBeenCalledTimes(1)
+    expect(useHistory().push).toHaveBeenCalledWith('/images')
   })
 })
