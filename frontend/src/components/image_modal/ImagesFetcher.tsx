@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
 import { fetchImages } from 'actions'
-import { getImagesList } from 'selectors'
-import { ImagesList } from 'types'
+import { getSortedImageIds, isFetchingImages } from 'selectors'
+import { StoreState } from 'types'
 import useQuery from 'hooks/useQuery'
+import useDidUpdateEffect from 'hooks/useDidUpdateEffect'
 
 export default function ImagesFetcher() {
   const dispatch = useDispatch()
@@ -12,17 +14,17 @@ export default function ImagesFetcher() {
   const query = useQuery()
   const params: { id: string } = useParams()
   const id = parseInt(params.id, 10)
-  const images: ImagesList = useSelector(getImagesList)
 
-  const imagesIds = Object.keys(images).map((stringId) =>
-    parseInt(stringId, 10)
-  )
+  const { imageIds, isFetching } = useSelector((s: StoreState) => ({
+    imageIds: getSortedImageIds(s),
+    isFetching: isFetchingImages(s)
+  }))
 
-  const lastImageId = Math.min(...imagesIds)
-  const firstImageId = Math.max(...imagesIds)
+  const lastImageId = Math.min(...imageIds)
+  const firstImageId = Math.max(...imageIds)
 
   useEffect(() => {
-    if (id && lastImageId && Object.keys(images).length && id <= lastImageId) {
+    if (id && lastImageId && imageIds.length && id <= lastImageId) {
       dispatch(
         fetchImages({ fromId: lastImageId - 1, limit: lastImageId - id })
       )
@@ -30,13 +32,19 @@ export default function ImagesFetcher() {
   }, [id, lastImageId])
 
   useEffect(() => {
-    if (id && firstImageId && Object.keys(images).length && id > firstImageId) {
+    if (id && firstImageId && imageIds.length && id > firstImageId) {
       history.replace({
         pathname: `/images/${firstImageId}`,
         search: query.toString()
       })
     }
   }, [id, firstImageId])
+
+  useDidUpdateEffect(() => {
+    if (isEmpty(imageIds) && !isFetching) {
+      history.push('/images')
+    }
+  }, [imageIds, isFetching])
 
   return null
 }
