@@ -1,5 +1,14 @@
 # Frontend
 
+## Environment variables
+
+Create a file called `.env` inside the `frontend` folder with the following content:
+
+```
+REACT_APP_BACKEND_DOMAIN=localhost:4000
+REACT_APP_SECURE=false
+```
+
 ## Install the dependencies
 
 Run at the `frontend` folder:

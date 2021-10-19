@@ -10,6 +10,22 @@ Demo: https://tau-station-test-frontend.herokuapp.com/
 
 ---
 
+## Environment variables
+
+Create a file called `.env` inside the `frontend` folder with the following content:
+
+```
+REACT_APP_BACKEND_DOMAIN=localhost:4000
+REACT_APP_SECURE=false
+```
+
+Create a file called `.env` inside the `backend` folder with the following content:
+
+```
+NODE_ENV=development
+PORT=4000
+```
+
 ## Install the dependencies
 
 Run at the root folder:

@@ -1,5 +1,14 @@
 # Backend
 
+## Environment variables
+
+Create a file called `.env` inside the `backend` folder with the following content:
+
+```
+NODE_ENV=development
+PORT=4000
+```
+
 ## Install the dependencies
 
 Run at the `backend` folder:
