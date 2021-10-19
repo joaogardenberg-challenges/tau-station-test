@@ -57,17 +57,19 @@ export default function ImagesList() {
 
   return (
     <StyledImagesList>
-      {isEmpty(imageIds) && isFetching ? (
-        <div className="loading">
-          <CircularProgress color="primary" size={45} thickness={5} />
-        </div>
-      ) : isEmpty(imageIds) ? (
-        <div className="error">
-          <Typography>Failed to fetch images</Typography>
-          <Button variant="contained" onClick={fetch}>
-            Retry
-          </Button>
-        </div>
+      {isEmpty(imageIds) ? (
+        isFetching ? (
+          <div className="loading">
+            <CircularProgress color="primary" size={45} thickness={5} />
+          </div>
+        ) : (
+          <div className="error">
+            <Typography>Failed to fetch images</Typography>
+            <Button variant="contained" onClick={fetch}>
+              Retry
+            </Button>
+          </div>
+        )
       ) : (
         <>
           <ul className="images-list">
