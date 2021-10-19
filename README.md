@@ -4,7 +4,9 @@ Demo: https://tau-station-test-frontend.herokuapp.com/
 
 (might take some time to load if the dynos are asleep)
 
-[Backend API Reference](backend)
+[Frontend Reference](frontend)
+
+[Backend Reference](backend)
 
 ---
 
