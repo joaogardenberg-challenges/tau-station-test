@@ -16,7 +16,8 @@ export default function Theme({ children }: ThemeProviderProps) {
       background: { default: '#fff' },
       primary: { main: '#000' },
       secondary: { main: '#fff' }
-    }
+    },
+    components: { MuiUseMediaQuery: { defaultProps: { noSsr: true } } }
   })
 
   if (NODE_ENV === 'development') {
