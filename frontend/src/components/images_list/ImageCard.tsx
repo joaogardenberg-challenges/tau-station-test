@@ -40,7 +40,7 @@ export default function ImageCard({
 
   useEffect(() => {
     if (selectedImage === imageId) {
-      ref.current?.scrollIntoView({ behavior: 'smooth' })
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }, [selectedImage === imageId])
 
