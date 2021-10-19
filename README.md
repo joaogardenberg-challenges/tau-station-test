@@ -8,6 +8,44 @@ Demo: https://tau-station-test-frontend.herokuapp.com/
 
 ---
 
+## Install the dependencies
+
+Run at the root folder:
+
+```
+$ npm install
+```
+
+This runs `npm install` both in the frontend and in the backend, synchronously.
+
+## Start the development server
+
+Run at the root folder:
+
+```
+$ npm start
+```
+
+This runs `npm start` both in the frontend and in the backend, asynchronously.
+
+## Test the frontend/backend
+
+Run at the `frontend` or `backend` folders:
+
+```
+$ npm test
+```
+
+## Build the frontend/backend for production
+
+Run at the `frontend` or `backend` folders:
+
+```
+$ npm run build
+```
+
+---
+
 ## Description
 
 ### The Synopsis
