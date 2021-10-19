@@ -27,7 +27,7 @@ describe('Images List', () => {
     useMediaQuery.mockReturnValue(true) // This means xl === true
   })
 
-  it('renders successfully', () => {
+  it('renders the images successfully', () => {
     const { container } = renderWithTheme(<ImagesList />)
 
     const imageFillers = screen.getAllByTestId('image-filler')
@@ -37,6 +37,29 @@ describe('Images List', () => {
     expect(imageFillers.length).toBe(2)
     expect(imageCards.length).toBe(3)
     expect(imagesFetcher).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders loading successfully', () => {
+    useSelector.mockReturnValue({ imageIds: [], isFetching: true })
+    const { container } = renderWithTheme(<ImagesList />)
+
+    const spinner = screen.getByRole('progressbar')
+
+    expect(spinner).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders error successfully', () => {
+    useSelector.mockReturnValue({ imageIds: [], isFetching: false })
+    const { container } = renderWithTheme(<ImagesList />)
+
+    const retry = screen.getByRole('button')
+    userEvent.click(retry)
+
+    expect(stopWatchingImages).toHaveBeenCalledTimes(2)
+    expect(fetchImages).toHaveBeenCalledTimes(2)
+    expect(watchImages).toHaveBeenCalledTimes(2)
     expect(container).toMatchSnapshot()
   })
 
