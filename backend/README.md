@@ -22,7 +22,7 @@
                 Fetches the full list of images.
                 <br />
                 <br />
-                The images count starts at 100 and resets when there are more than 300.
+                The images count starts at 100 and resets when there are more than 1000.
             </td>
             <td></td>
             <td>
