@@ -1,4 +1,4 @@
-import { useRef, useContext, useState, useEffect, ReactElement } from 'react'
+import { useRef, useContext, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
