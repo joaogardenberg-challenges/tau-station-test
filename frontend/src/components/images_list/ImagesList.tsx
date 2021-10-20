@@ -34,7 +34,7 @@ export default function ImagesList() {
 
   const [missingEnd, setMissingEnd] = useState<number>(0)
   const missingStart =
-    ((perRow - (imageIds.length % perRow)) % perRow) - missingEnd
+    (perRow - ((imageIds.length + missingEnd) % perRow)) % perRow
 
   const fetch = () => {
     dispatch(stopWatchingImages())
@@ -45,6 +45,10 @@ export default function ImagesList() {
   useEffect(() => {
     fetch()
   }, [])
+
+  useEffect(() => {
+    setMissingEnd(0)
+  }, [perRow])
 
   const renderFiller = (i: number) => (
     <ImageFiller key={i} perRow={perRow} perColumn={PER_COLUMN} />
