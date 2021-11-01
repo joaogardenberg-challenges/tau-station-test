@@ -15,7 +15,7 @@ export default styled.li<StyledImageCardProps>`
   margin: ${({ theme }) => theme.spacing(1)};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   width: calc(
-    (100vw - ${({ theme, perRow }) => theme.spacing(perRow * 2 + 2)}) /
+    (100% - ${({ theme, perRow }) => theme.spacing(perRow * 2 + 2)}) /
       ${({ perRow }) => perRow}
   );
   &.transition-appear,

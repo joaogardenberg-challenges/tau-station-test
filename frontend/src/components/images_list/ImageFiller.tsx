@@ -8,7 +8,7 @@ const StyledImageFiller = styled.li<ImageFillerProps>`
   list-style: none;
   margin: ${({ theme }) => theme.spacing(1)};
   width: calc(
-    (100vw - ${({ theme, perRow }) => theme.spacing(perRow * 2 + 2)}) /
+    (100% - ${({ theme, perRow }) => theme.spacing(perRow * 2 + 2)}) /
       ${({ perRow }) => perRow}
   );
 `
